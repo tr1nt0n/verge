@@ -31,5 +31,4 @@ violin_3_voice = score["violin 3 voice"]
 # rhythm tools
 
 
-
 # pitch tools
