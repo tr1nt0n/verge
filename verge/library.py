@@ -190,7 +190,9 @@ def pitch_conjuring(voice, measures, selector, index):
 
         ratio_handler(selections)
 
+
 # notation tools
+
 
 def blank_time_signature(global_context=score["Global Context"]):
     abjad.attach(
@@ -198,7 +200,7 @@ def blank_time_signature(global_context=score["Global Context"]):
             r"\once \override Score.TimeSignature.stencil = #(blank-time-signature)",
             format_slot="before",
         ),
-        abjad.Selection(global_context).leaf(0)
+        abjad.Selection(global_context).leaf(0),
     )
 
     for string in [

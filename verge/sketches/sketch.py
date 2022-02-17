@@ -78,22 +78,58 @@ trinton.handwrite(
 
 verge.pitch_conjuring(
     voice=verge.violin_2_voice,
-    measures=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,],
+    measures=[
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+    ],
     selector=baca.selectors.pleaves(),
-    index=0
+    index=0,
 )
 
 verge.pitch_conjuring(
     voice=verge.violin_3_voice,
-    measures=[1, 2, 3, 4, 5, 6, ],
+    measures=[
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+    ],
     selector=baca.selectors.pleaves(),
-    index=1
+    index=1,
 )
 
 trinton.append_rests(
     score=score,
     voice="violin 1 voice",
-    rests=[abjad.Skip((1, 1), multiplier=(_)) for _ in [(1, 4), (1, 6), (1, 5), (1, 7), (1, 3), (3, 4), (1, 3), (1, 15), (1, 14), (1, 2), (1, 7), (1, 1),]]
+    rests=[
+        abjad.Skip((1, 1), multiplier=(_))
+        for _ in [
+            (1, 4),
+            (1, 6),
+            (1, 5),
+            (1, 7),
+            (1, 3),
+            (3, 4),
+            (1, 3),
+            (1, 15),
+            (1, 14),
+            (1, 2),
+            (1, 7),
+            (1, 1),
+        ]
+    ],
 )
 
 # global attachments
