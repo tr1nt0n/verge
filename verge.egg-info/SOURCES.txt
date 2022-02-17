@@ -1,0 +1,9 @@
+README.md
+setup.py
+verge/__init__.py
+verge/library.py
+verge.egg-info/PKG-INFO
+verge.egg-info/SOURCES.txt
+verge.egg-info/dependency_links.txt
+verge.egg-info/requires.txt
+verge.egg-info/top_level.txt
