@@ -4,6 +4,7 @@ from .library import (
     violin_2_voice,
     violin_3_voice,
     pitch_conjuring,
+    blank_time_signature,
 )
 
 __all__ = [
@@ -12,4 +13,5 @@ __all__ = [
     "violin_2_voice",
     "violin_3_voice",
     "pitch_conjuring",
+    "blank_time_signature",
 ]

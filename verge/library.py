@@ -189,3 +189,28 @@ def pitch_conjuring(voice, measures, selector, index):
         selections = selector(current_measure)
 
         ratio_handler(selections)
+
+# notation tools
+
+def blank_time_signature(global_context=score["Global Context"]):
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r"\once \override Score.TimeSignature.stencil = #(blank-time-signature)",
+            format_slot="before",
+        ),
+        abjad.Selection(global_context).leaf(0)
+    )
+
+    for string in [
+        r"\once \override Score.BarLine.stencil = ##f",
+        r"\once \override Score.SpanBar.stencil = ##f",
+        r"\once \override Score.TimeSignature.stencil = ##f",
+    ]:
+        for skip in abjad.Selection(global_context).leaves().exclude([0]):
+            abjad.attach(
+                abjad.LilyPondLiteral(
+                    string,
+                    format_slot="before",
+                ),
+                skip,
+            )
