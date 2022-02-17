@@ -4,7 +4,6 @@ __pycache__/
 .wav
 *.py[cod]
 *.$py.class
-*.png
 *.pdf
 *.midi
 
