@@ -43,7 +43,7 @@
         \Score
         \numericTimeSignature
         \accepts TimeSignatureContext
-        proportionalNotationDuration = #(ly:make-moment 1 30)
+        proportionalNotationDuration = #(ly:make-moment 1 20)
         \override StaffGrouper.staff-staff-spacing = #'((basic-distance . 11) (minimum distance . 11) (padding . 2))
 
         \override AccidentalSuggestion.avoid-slur = #'ignore
@@ -114,7 +114,6 @@
     \context {
         \Staff
         fontSize = #-1
-        \override InstrumentName.self-alignment-X = #CENTER
         \override TimeSignature.break-visibility = #end-of-line-invisible
         \override TimeSignature.font-size = 8
 		\override TimeSignature.font-name = "Bodoni72"
