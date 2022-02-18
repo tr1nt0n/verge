@@ -6,6 +6,7 @@ import verge
 import random
 from abjadext import rmakers
 from abjadext import microtones
+from random import randint
 
 # score and voice variables
 
@@ -190,11 +191,18 @@ def pitch_conjuring(voice, measures, selector, index):
 
         ratio_handler(selections)
 
+def pitch_arcana():
+    set = trinton.logistic_map(
+        x=5,
+        r=-1,
+        n=12,
+        seed=3
+    )
 
 # notation tools
 
 
-def blank_time_signature(global_context=score["Global Context"]):
+def blank_time_signature(global_context=score["Global Context"], measures="all"):
     abjad.attach(
         abjad.LilyPondLiteral(
             r"\once \override Score.TimeSignature.stencil = #(blank-time-signature)",
@@ -203,16 +211,32 @@ def blank_time_signature(global_context=score["Global Context"]):
         abjad.Selection(global_context).leaf(0),
     )
 
-    for string in [
-        r"\once \override Score.BarLine.stencil = ##f",
-        r"\once \override Score.SpanBar.stencil = ##f",
-        r"\once \override Score.TimeSignature.stencil = ##f",
-    ]:
-        for skip in abjad.Selection(global_context).leaves().exclude([0]):
-            abjad.attach(
-                abjad.LilyPondLiteral(
+    if measures != "all":
+        for string in [
+            r"\once \override Score.BarLine.stencil = ##f",
+            r"\once \override Score.SpanBar.stencil = ##f",
+            r"\once \override Score.TimeSignature.stencil = ##f",
+        ]:
+            trinton.attach(
+                voice=global_context,
+                leaves=measures,
+                attachment=abjad.LilyPondLiteral(
                     string,
                     format_slot="before",
                 ),
-                skip,
             )
+
+    else:
+        for string in [
+            r"\once \override Score.BarLine.stencil = ##f",
+            r"\once \override Score.SpanBar.stencil = ##f",
+            r"\once \override Score.TimeSignature.stencil = ##f",
+        ]:
+            for skip in abjad.Selection(global_context).leaves().exclude([0]):
+                abjad.attach(
+                    abjad.LilyPondLiteral(
+                        string,
+                        format_slot="before",
+                    ),
+                    skip,
+                )
