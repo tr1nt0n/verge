@@ -6,7 +6,7 @@
 
 \score {
     {
-        \include "sketch.ly"
+        % \include "sketch.ly"
     }
 % \midi{}
 }

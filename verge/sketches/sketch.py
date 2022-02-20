@@ -8,47 +8,71 @@ from abjadext import microtones
 
 # score
 
-# score = verge.score
+score = verge.score
 
 # time signatures
 
-# trinton.write_time_signatures(
-#     [
-#         (1, 4),
-#         (1, 6),
-#         (1, 5),
-#         (1, 7),
-#         (1, 3),
-#         (3, 4),
-#         (1, 3),
-#         (1, 15),
-#         (1, 14),
-#         (1, 2),
-#         (1, 7),
-#         (1, 1),
-#     ],
-#     score["Global Context"],
-# )
-
-# verge.blank_time_signature()
+trinton.write_time_signatures(
+    [
+        (6, 8),
+    ],
+    score["Global Context"],
+)
 
 # test
 
-# rhythms
+verge.arcana_rhythms(
+    score=score,
+    voice_name="violin 1 voice",
+    durations=[(3, 4)],
+    index=18,
+    rest_selector=trinton.select_logical_ties_by_index([0, 1, 2,]),
+)
 
-verge.pitch_arcana()
+verge.arcana_rhythms(
+    score=score,
+    voice_name="violin 2 voice",
+    durations=[(3, 4)],
+    index=18,
+    rest_selector=trinton.select_logical_ties_by_index([2,]),
+)
+
+verge.arcana_rhythms(
+    score=score,
+    voice_name="violin 3 voice",
+    durations=[(3, 4)],
+    index=19,
+    rest_selector=trinton.select_logical_ties_by_index([0, 1, 2, 4,]),
+)
+
+verge.pitch_arcana(
+    voices=[
+        score["violin 1 voice"],
+        score["violin 2 voice"],
+        score["violin 3 voice"],
+    ],
+    measures=[1],
+    selector=baca.selectors.pleaves(),
+    index=0
+)
+
+for voice_name in ["violin 1 voice", "violin 2 voice"]:
+    trinton.dashed_slur(
+        start_selection=abjad.Selection(score[voice_name]).leaves(pitched=True)[0],
+        stop_selection=abjad.Selection(score[voice_name]).leaves(pitched=True)[-1],
+    )
 
 # global attachments
 
 # show file
 
-# trinton.render_file(
-#     score=score,
-#     segment_path="/Users/trintonprater/scores/verge/verge/sketches",
-#     build_path="/Users/trintonprater/scores/verge/verge/build",
-#     segment_name="sketch",
-#     includes=[
-#         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-#         "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
-#     ],
-# )
+trinton.render_file(
+    score=score,
+    segment_path="/Users/trintonprater/scores/verge/verge/sketches",
+    build_path="/Users/trintonprater/scores/verge/verge/build",
+    segment_name="sketch",
+    includes=[
+        "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
+        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+    ],
+)

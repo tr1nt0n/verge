@@ -6,6 +6,7 @@ from .library import (
     pitch_conjuring,
     blank_time_signature,
     pitch_arcana,
+    arcana_rhythms,
 )
 
 __all__ = [
@@ -16,4 +17,5 @@ __all__ = [
     "pitch_conjuring",
     "blank_time_signature",
     "pitch_arcana",
+    "arcana_rhythms",
 ]

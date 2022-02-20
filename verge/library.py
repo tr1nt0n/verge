@@ -30,8 +30,133 @@ violin_2_voice = score["violin 2 voice"]
 
 violin_3_voice = score["violin 3 voice"]
 
+# rhythm annotations
+
+arcana = "arcana"
+
 # rhythm tools
 
+_prol_to_lst = {
+    7: [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+    ],
+    6: [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+    ],
+    5: [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+    ],
+}
+
+
+def make_prolations(prolation):
+    random.seed(3)
+    prolations = []
+
+    for lst in [
+        trinton.all_additions(lst=_prol_to_lst[prolation], s=prolation, pair_num=_)
+        for _ in list(range(2, prolation + 1))
+    ]:
+        random.sample(lst, k=len(lst))
+        for pair in lst:
+            new_pair = random.sample(pair, k=len(pair))
+            prolations.append(tuple(new_pair))
+
+    final_prolations = list(set(prolations))
+
+    return final_prolations
+
+
+def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
+    _voice_to_prolation = {
+        "violin 1 voice": trinton.rotated_sequence(make_prolations(6), index),
+        "violin 2 voice": trinton.rotated_sequence(make_prolations(5), index),
+        "violin 3 voice": trinton.rotated_sequence(make_prolations(7), index),
+    }
+
+    if rest_selector is not None:
+        stack = rmakers.stack(
+            rmakers.tuplet(_voice_to_prolation[voice_name]),
+            rmakers.force_rest(rest_selector),
+            rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_dots(),
+            rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        )
+
+        selections = trinton.make_and_append_rhythm_selections(score=score, voice_name=voice_name, stack=stack, durations=durations,)
+
+        for sel in selections:
+            abjad.annotate(sel, arcana, True)
+
+    else:
+        stack = rmakers.stack(
+            rmakers.tuplet(_voice_to_prolation[voice_name]),
+            rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_dots(),
+            rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        )
+
+        selections = trinton.make_and_append_rhythm_selections(score=score, voice_name=voice_name, stack=stack, durations=durations,)
+
+        for sel in selections:
+            abjad.annotate(sel, arcana, True)
 
 # pitch tools
 
@@ -191,13 +316,38 @@ def pitch_conjuring(voice, measures, selector, index):
 
         ratio_handler(selections)
 
-def pitch_arcana():
-    set = trinton.logistic_map(
-        x=5,
-        r=-1,
-        n=12,
-        seed=3
+
+def pitch_arcana(voices, measures, selector, index):
+    map = trinton.rotated_sequence(
+        trinton.logistic_map(
+            x=5,
+            r=-1,
+            n=12,
+            seed=3,
+        ),
+        index,
     )
+
+    handler = evans.PitchHandler(pitch_list=map, forget=False)
+
+    for measure in measures:
+
+        sel = []
+
+        for voice in voices:
+
+            grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+
+            current_measure = grouped_measures[measure - 1]
+
+            selections = selector(current_measure)
+
+            sel.append(selections)
+
+        handler(sel[:])
+
+
+
 
 # notation tools
 
