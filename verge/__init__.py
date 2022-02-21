@@ -7,6 +7,16 @@ from .library import (
     blank_time_signature,
     pitch_arcana,
     arcana_rhythms,
+    pitch_earthen,
+    four_lines,
+    five_lines,
+    naiads_ii_rhythms,
+    collapsing_tuplets_1,
+    collapsing_tuplets_2,
+    collapsing_tuplets_3,
+    arcana,
+    naiads,
+    pitch_naiads,
 )
 
 __all__ = [
@@ -18,4 +28,14 @@ __all__ = [
     "blank_time_signature",
     "pitch_arcana",
     "arcana_rhythms",
+    "pitch_earthen",
+    "four_lines",
+    "five_lines",
+    "naiads_ii_rhythms",
+    "collapsing_tuplets_1",
+    "collapsing_tuplets_2",
+    "collapsing_tuplets_3",
+    "arcana",
+    "naiads",
+    "pitch_naiads",
 ]
