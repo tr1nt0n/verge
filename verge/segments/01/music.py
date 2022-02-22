@@ -155,7 +155,7 @@ trinton.attach(
     attachment=abjad.BarLine("||"),
 )
 
-for number, string in zip([0, 1], ["11:10", "23:30"]):
+for number, string in zip([0, 1], ["11:10", "23:20"]):
     abjad.override(abjad.Selection(score["violin 2 voice"]).tuplet(number)).TupletNumber.text = abjad.Markup(
         rf"\markup \italic {string}"
     )

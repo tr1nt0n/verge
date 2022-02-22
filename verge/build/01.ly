@@ -124,7 +124,7 @@
                         ]
                     }
                     \revert TupletNumber.text
-                    \override TupletNumber.text = \markup \italic 23:30
+                    \override TupletNumber.text = \markup \italic 23:20
                     \times 60/69
                     {
                         <a a'>16
