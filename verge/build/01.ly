@@ -188,10 +188,15 @@
                     \ff
                     - \tenuto
                     ~
+                    - \abjad-dashed-line-with-hook
+                    - \tweak bound-details.left.text \markup \concat { {IV} \hspace #0.5 }
+                    - \tweak padding 8
+                    \startTextSpan
                     \boxed-markup "XSB" 1
                     \tweak style #'triangle
                     bqf4
                     r4
+                    \stopTextSpan
                     \staff-line-count 4
                     \clef "percussion"
                     \tweak Accidental.transparent ##t
@@ -208,6 +213,10 @@
                     - \tenuto
                     ~
                     ]
+                    - \abjad-dashed-line-with-hook
+                    - \tweak bound-details.left.text \markup \concat { {IV} \hspace #0.5 }
+                    - \tweak padding 15.5
+                    \startTextSpan
                     \tweak padding 5
                     \boxed-markup "Ord." 1
                     \tweak style #'triangle
@@ -227,6 +236,7 @@
                     \tweak Accidental.transparent ##t
                     bf32
                     - \marcato
+                    \stopTextSpan
                     [
                     \tweak padding 5
                     \boxed-markup "DP, wrapping" 1
@@ -248,6 +258,10 @@
                     dqf'8.
                     - \tenuto
                     ]
+                    - \abjad-dashed-line-with-hook
+                    - \tweak bound-details.left.text \markup \concat { {IV} \hspace #0.5 }
+                    - \tweak padding 12
+                    \startTextSpan
                     \tweak padding 5
                     \boxed-markup "Ord." 1
                     \tweak Accidental.stencil #ly:text-interface::print
@@ -255,6 +269,7 @@
                     fs'4
                     \mp
                     ^ \markup \center-align { -16 }
+                    \stopTextSpan
                     \(
                     \boxed-markup "NB" 1
                     \tweak edge-height #'(0.7 . 0)

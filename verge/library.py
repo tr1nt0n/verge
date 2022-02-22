@@ -155,7 +155,7 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
             # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.beam_groups(),
+            rmakers.beam_groups(beam_rests=True),
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -174,7 +174,7 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
             # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.beam_groups(),
+            rmakers.beam_groups(beam_rests=True),
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -197,7 +197,7 @@ def naiads_ii_rhythms(
         rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_dots(),
         # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.beam_groups(),
+        rmakers.beam_groups(beam_rests=True),
     )
 
     stack2 = rmakers.stack(
@@ -208,7 +208,7 @@ def naiads_ii_rhythms(
         rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_dots(),
         # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.beam_groups(),
+        rmakers.beam_groups(beam_rests=True),
     )
 
     _voice_to_stack = {"violin 1 voice": stack1, "violin 2 voice": stack2}
@@ -243,7 +243,7 @@ def stirring_rhythms(score, voice_name, durations, divisions, index):
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
             # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.beam_groups(),
+            rmakers.beam_groups(beam_rests=True),
         )
 
         trinton.make_and_append_rhythm_selections(

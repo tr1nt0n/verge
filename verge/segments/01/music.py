@@ -494,6 +494,30 @@ trinton.write_slur(
     ],
 )
 
+trinton.write_hooked_spanner(
+    voice=score["violin 2 voice"],
+    string=r"\markup {IV}",
+    start_leaf=[42,],
+    stop_leaf=[48,],
+    padding=15.5
+)
+
+trinton.write_hooked_spanner(
+    voice=score["violin 2 voice"],
+    string=r"\markup {IV}",
+    start_leaf=[37,],
+    stop_leaf=[39,],
+    padding=8
+)
+
+trinton.write_hooked_spanner(
+    voice=score["violin 2 voice"],
+    string=r"\markup {IV}",
+    start_leaf=[55,],
+    stop_leaf=[56,],
+    padding=12
+)
+
 # render file
 
 trinton.render_file(
