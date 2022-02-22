@@ -155,7 +155,7 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
             # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.beam_groups()
+            rmakers.beam_groups(),
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -174,7 +174,7 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
             # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.beam_groups()
+            rmakers.beam_groups(),
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -197,7 +197,7 @@ def naiads_ii_rhythms(
         rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_dots(),
         # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.beam_groups()
+        rmakers.beam_groups(),
     )
 
     stack2 = rmakers.stack(
@@ -208,7 +208,7 @@ def naiads_ii_rhythms(
         rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_dots(),
         # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.beam_groups()
+        rmakers.beam_groups(),
     )
 
     _voice_to_stack = {"violin 1 voice": stack1, "violin 2 voice": stack2}
@@ -243,7 +243,7 @@ def stirring_rhythms(score, voice_name, durations, divisions, index):
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
             # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.beam_groups()
+            rmakers.beam_groups(),
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -869,7 +869,7 @@ def blank_time_signature(global_context=score["Global Context"], measures="all")
         r"\once \override Score.SpanBar.stencil = ##f",
         r"\once \override Score.TimeSignature.stencil = ##f",
     ]:
-        for measure in measures[1:measures[0 + len(measures) - 1]]:
+        for measure in measures[1 : measures[0 + len(measures) - 1]]:
             trinton.attach(
                 voice=global_context,
                 leaves=[measure],
@@ -909,7 +909,9 @@ def five_lines(score, voice, leaves):
         ],
     )
 
+
 # selectors
+
 
 def subharmonic_selector():
     def selector(argument):
@@ -919,7 +921,9 @@ def subharmonic_selector():
             if tie.written_duration > abjad.Duration(1, 8):
                 out.append(tie)
         return abjad.Selection(out[:]).leaves(pitched=True)
+
     return selector
+
 
 def wrapping_selector():
     def selector(argument):
@@ -929,4 +933,5 @@ def wrapping_selector():
             if tie.written_duration <= abjad.Duration(1, 8):
                 out.append(tie)
         return abjad.Selection(out[:]).leaves(pitched=True)
+
     return selector

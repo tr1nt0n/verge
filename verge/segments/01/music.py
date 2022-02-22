@@ -29,7 +29,14 @@ trinton.write_time_signatures(
     score["Global Context"],
 )
 
-verge.blank_time_signature(measures=[6, 7, 8, 9,])
+verge.blank_time_signature(
+    measures=[
+        6,
+        7,
+        8,
+        9,
+    ]
+)
 
 # rhythm
 
@@ -37,7 +44,47 @@ trinton.make_and_append_rhythm_selections(
     score=score,
     voice_name="violin 2 voice",
     stack=rmakers.stack(
-        rmakers.tuplet([(1, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1, 2, 1, 1, 2,), (1, 2, 1, 1, 2, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1, 1,),]),
+        rmakers.tuplet(
+            [
+                (
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    1,
+                    1,
+                    2,
+                    1,
+                    1,
+                    2,
+                ),
+                (
+                    1,
+                    2,
+                    1,
+                    1,
+                    2,
+                    1,
+                    1,
+                    2,
+                    2,
+                    1,
+                    1,
+                    1,
+                    2,
+                    2,
+                    1,
+                    1,
+                    1,
+                ),
+            ]
+        ),
         rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
         rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
@@ -45,14 +92,22 @@ trinton.make_and_append_rhythm_selections(
         rmakers.rewrite_dots(),
         rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
     ),
-    durations=[(5, 4), (5, 4),]
+    durations=[
+        (5, 4),
+        (5, 4),
+    ],
 )
 
 for voice_name in ["violin 1 voice", "violin 3 voice"]:
     trinton.append_rests(
         score=score,
         voice=voice_name,
-        rests=[abjad.Skip("r2."), abjad.Skip("r2"), abjad.Skip("r2."), abjad.Skip("r2")]
+        rests=[
+            abjad.Skip("r2."),
+            abjad.Skip("r2"),
+            abjad.Skip("r2."),
+            abjad.Skip("r2"),
+        ],
     )
 
 for voice_name, index, selector in zip(
@@ -67,10 +122,22 @@ for voice_name, index, selector in zip(
         2,
     ],
     [
-        trinton.select_leaves_by_index([1,]),
-        trinton.select_leaves_by_index([0,]),
-        trinton.select_leaves_by_index([0,]),
-    ]
+        trinton.select_leaves_by_index(
+            [
+                1,
+            ]
+        ),
+        trinton.select_leaves_by_index(
+            [
+                0,
+            ]
+        ),
+        trinton.select_leaves_by_index(
+            [
+                0,
+            ]
+        ),
+    ],
 ):
     verge.arcana_rhythms(
         score=score,
@@ -87,13 +154,13 @@ for voice_name in ["violin 1 voice", "violin 3 voice"]:
     trinton.append_rests(
         score=score,
         voice=voice_name,
-        rests=[abjad.Skip((1, 1), multiplier=_) for _ in [(5, 4), (7, 4), (1, 4)]]
+        rests=[abjad.Skip((1, 1), multiplier=_) for _ in [(5, 4), (7, 4), (1, 4)]],
     )
 
 trinton.append_rests(
     score=score,
     voice="violin 1 voice",
-    rests=[abjad.Skip((1, 1), multiplier=_) for _ in [(1, 2), (1, 3), (1, 5), (1, 4)]]
+    rests=[abjad.Skip((1, 1), multiplier=_) for _ in [(1, 2), (1, 3), (1, 5), (1, 4)]],
 )
 
 trinton.handwrite(
@@ -109,11 +176,7 @@ trinton.handwrite(
 )
 
 for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
-    trinton.append_rests(
-        score=score,
-        voice=voice_name,
-        rests=[abjad.Skip("r4")]
-    )
+    trinton.append_rests(score=score, voice=voice_name, rests=[abjad.Skip("r4")])
 
 
 # global attachments
@@ -125,13 +188,14 @@ for met, leaf in zip(
         abjad.MetronomeMark((1, 4), 47),
         abjad.MetronomeMark((1, 4), 105),
     ],
-    [0, 2, 3, 6,],
+    [
+        0,
+        2,
+        3,
+        6,
+    ],
 ):
-    trinton.attach(
-        voice=score["Global Context"],
-        leaves=[leaf],
-        attachment=met
-    )
+    trinton.attach(voice=score["Global Context"], leaves=[leaf], attachment=met)
 
 trinton.attach(
     voice=score["Global Context"],
@@ -144,7 +208,12 @@ trinton.attach(
 trinton.populate_fermata_measures(
     score=score,
     voices=["Global Context", "violin 1 voice", "violin 2 voice", "violin 3 voice"],
-    leaves=[[-1], [-1], [-1], [-1],],
+    leaves=[
+        [-1],
+        [-1],
+        [-1],
+        [-1],
+    ],
 )
 
 trinton.attach(
@@ -156,36 +225,47 @@ trinton.attach(
 )
 
 for number, string in zip([0, 1], ["11:10", "23:20"]):
-    abjad.override(abjad.Selection(score["violin 2 voice"]).tuplet(number)).TupletNumber.text = abjad.Markup(
-        rf"\markup \italic {string}"
-    )
+    abjad.override(
+        abjad.Selection(score["violin 2 voice"]).tuplet(number)
+    ).TupletNumber.text = abjad.Markup(rf"\markup \italic {string}")
 
 # meter rewriting and beaming
 
-trinton.rewrite_meter_by_measure(score=score, measures=[1, 2, 3, 4, 5, 6,])
+trinton.rewrite_meter_by_measure(
+    score=score,
+    measures=[
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+    ],
+)
 
 # trinton.annotate_leaves(score)
 
 trinton.beam_runs_by_selection(
     score=score,
     voice="violin 2 voice",
-    start_beam=[40, 48,],
-    stop_beam=[42, 55,],
-    beam_rests=True
+    start_beam=[
+        40,
+        48,
+    ],
+    stop_beam=[
+        42,
+        55,
+    ],
+    beam_rests=True,
 )
 
 # pitching
 
-octave_handler = evans.PitchHandler(
-    pitch_list=[[-3, 9]],
-    forget=False
-)
+octave_handler = evans.PitchHandler(pitch_list=[[-3, 9]], forget=False)
 
 octave_handler(
     trinton.make_leaf_selection(
-        score=score,
-        voice="violin 2 voice",
-        leaves=list(range(0, 33))
+        score=score, voice="violin 2 voice", leaves=list(range(0, 33))
     )
 )
 
@@ -195,43 +275,56 @@ verge.pitch_arcana(
         score["violin 2 voice"],
         score["violin 3 voice"],
     ],
-    measures=[3,],
+    measures=[
+        3,
+    ],
     selector=baca.selectors.pleaves(),
-    index=0
+    index=0,
 )
 
 verge.octave_up([abjad.Selection(score["violin 3 voice"]).leaf(5)])
 
 verge.pitch_earthen(
     voice=score["violin 2 voice"],
-    measures=[4, 5, 6,],
+    measures=[
+        4,
+        5,
+        6,
+    ],
     selector=verge.subharmonic_selector(),
     string="IV",
     seed=12,
-    index=3
+    index=3,
 )
 
 verge.pitch_earthen(
     voice=score["violin 2 voice"],
-    measures=[4, 5,],
+    measures=[
+        4,
+        5,
+    ],
     selector=verge.wrapping_selector(),
     string="wrapping",
     seed=7,
-    index=2
+    index=2,
 )
 
 verge.pitch_conjuring(
     voice=score["violin 2 voice"],
-    measures=[7, 8, 9,],
+    measures=[
+        7,
+        8,
+        9,
+    ],
     selector=baca.selectors.pleaves(),
-    index=0
+    index=0,
 )
 
 verge.pitch_conjuring(
     voice=score["violin 3 voice"],
     measures=[7, 8, 9, 10],
     selector=baca.selectors.pleaves(),
-    index=0
+    index=0,
 )
 
 # attachments
@@ -240,26 +333,33 @@ for number in list(range(0, 33)):
     if number % 2 == 1:
         abjad.attach(
             abjad.Articulation("upbow"),
-            abjad.Selection(score["violin 2 voice"]).leaf(number)
+            abjad.Selection(score["violin 2 voice"]).leaf(number),
         )
 
     else:
         abjad.attach(
             abjad.Articulation("downbow"),
-            abjad.Selection(score["violin 2 voice"]).leaf(number)
+            abjad.Selection(score["violin 2 voice"]).leaf(number),
         )
 
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[0],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "As full bows as possible" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(
+        r'\boxed-markup "As full bows as possible" 1', format_slot="after"
+    ),
 )
 
-for start, stop in zip([abjad.Selection(score["violin 1 voice"]).leaf(4),
-abjad.Selection(score["violin 2 voice"]).leaf(34),], [
-    abjad.Selection(score["violin 1 voice"]).leaf(6),
-    abjad.Selection(score["violin 2 voice"]).leaf(35),
-]):
+for start, stop in zip(
+    [
+        abjad.Selection(score["violin 1 voice"]).leaf(4),
+        abjad.Selection(score["violin 2 voice"]).leaf(34),
+    ],
+    [
+        abjad.Selection(score["violin 1 voice"]).leaf(6),
+        abjad.Selection(score["violin 2 voice"]).leaf(35),
+    ],
+):
     trinton.dashed_slur(
         start_selection=start,
         stop_selection=stop,
@@ -268,13 +368,19 @@ abjad.Selection(score["violin 2 voice"]).leaf(34),], [
 verge.four_lines(
     score=score,
     voice="violin 2 voice",
-    leaves=[40, 48,]
+    leaves=[
+        40,
+        48,
+    ],
 )
 
 verge.five_lines(
     score=score,
     voice="violin 2 voice",
-    leaves=[42, 55,]
+    leaves=[
+        42,
+        55,
+    ],
 )
 
 wrapping = abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', format_slot="after")
@@ -282,7 +388,10 @@ abjad.tweak(wrapping).padding = 5
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[40, 48,],
+    leaves=[
+        40,
+        48,
+    ],
     attachment=wrapping,
 )
 
@@ -291,69 +400,98 @@ abjad.tweak(ord).padding = 5
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[42, 55,],
+    leaves=[
+        42,
+        55,
+    ],
     attachment=ord,
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[37,],
+    leaves=[
+        37,
+    ],
     attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', format_slot="after"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[56,],
+    leaves=[
+        56,
+    ],
     attachment=abjad.LilyPondLiteral(r'\boxed-markup "NB" 1', format_slot="after"),
 )
 
 trinton.attach(
-    voice=score["violin 2 voice"],
-    leaves=[0],
-    attachment=abjad.Dynamic("fff")
+    voice=score["violin 2 voice"], leaves=[0], attachment=abjad.Dynamic("fff")
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[37,],
-    attachment=abjad.Dynamic("ff")
+    leaves=[
+        37,
+    ],
+    attachment=abjad.Dynamic("ff"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[33, 56,],
-    attachment=abjad.Dynamic("mp")
+    leaves=[
+        33,
+        56,
+    ],
+    attachment=abjad.Dynamic("mp"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[33,],
-    attachment=abjad.StartHairpin("<")
+    leaves=[
+        33,
+    ],
+    attachment=abjad.StartHairpin("<"),
 )
 
 trinton.attach_multiple(
     score=score,
     voice="violin 2 voice",
-    leaves=[34,],
-    attachments=[abjad.Dynamic("mf"), abjad.StartHairpin(">o"),],
+    leaves=[
+        34,
+    ],
+    attachments=[
+        abjad.Dynamic("mf"),
+        abjad.StartHairpin(">o"),
+    ],
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[35,],
-    attachment=abjad.StopHairpin()
+    leaves=[
+        35,
+    ],
+    attachment=abjad.StopHairpin(),
 )
 
 trinton.write_slur(
     voice=score["violin 2 voice"],
-    start_slur=[56, 58,],
-    stop_slur=[57, 59,],
+    start_slur=[
+        56,
+        58,
+    ],
+    stop_slur=[
+        57,
+        59,
+    ],
 )
 
 trinton.write_slur(
     voice=score["violin 3 voice"],
-    start_slur=[12,],
-    stop_slur=[13,],
+    start_slur=[
+        12,
+    ],
+    stop_slur=[
+        13,
+    ],
 )
 
 # render file
