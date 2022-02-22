@@ -17,6 +17,12 @@ from .library import (
     pitch_naiads,
     stirring_rhythms,
     pitch_stirring,
+    octave_up,
+    double_octave_up,
+    octave_down,
+    double_octave_down,
+    subharmonic_selector,
+    wrapping_selector,
 )
 
 __all__ = [
@@ -40,4 +46,10 @@ __all__ = [
     "pitch_naiads",
     "stirring_rhythms",
     "pitch_stirring",
+    "octave_up",
+    "double_octave_up",
+    "octave_down",
+    "double_octave_down",
+    "subharmonic_selector",
+    "wrapping_selector",
 ]

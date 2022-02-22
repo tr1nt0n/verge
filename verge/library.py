@@ -154,7 +154,8 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
-            rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.beam_groups()
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -172,7 +173,8 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
-            rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.beam_groups()
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -194,7 +196,8 @@ def naiads_ii_rhythms(
         rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_dots(),
-        rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        rmakers.beam_groups()
     )
 
     stack2 = rmakers.stack(
@@ -204,7 +207,8 @@ def naiads_ii_rhythms(
         rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
         rmakers.rewrite_dots(),
-        rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        rmakers.beam_groups()
     )
 
     _voice_to_stack = {"violin 1 voice": stack1, "violin 2 voice": stack2}
@@ -238,7 +242,8 @@ def stirring_rhythms(score, voice_name, durations, divisions, index):
             rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
-            rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.beam_groups()
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -502,10 +507,12 @@ _string_to_pitch = {
 }
 
 
-def pitch_earthen(voice, measures, selector, string, seed):
+def pitch_earthen(voice, measures, selector, string, seed, index):
     random.seed(seed)
 
-    pitches = trinton.random_walk(chord=_string_to_pitch[string], seed=seed)
+    random_walk = trinton.random_walk(chord=_string_to_pitch[string], seed=seed)
+
+    pitches = trinton.rotated_sequence(random_walk, index)
 
     handler = evans.PitchHandler(
         pitch_list=pitches,
@@ -531,7 +538,8 @@ def pitch_earthen(voice, measures, selector, string, seed):
 
             for leaf in selections:
                 abjad.tweak(leaf.note_head).style = r"#'triangle"
-                abjad.attach(abjad.Articulation("tenuto"), leaf)
+            for tie in abjad.Selection(selections).logical_ties():
+                abjad.attach(abjad.Articulation("tenuto"), tie[0])
 
     else:
         for measure in measures:
@@ -543,7 +551,8 @@ def pitch_earthen(voice, measures, selector, string, seed):
 
             for leaf in selections:
                 abjad.tweak(leaf.note_head).Accidental.transparent = True
-                abjad.attach(abjad.Articulation("marcato"), leaf)
+            for tie in abjad.Selection(selections).logical_ties():
+                abjad.attach(abjad.Articulation("marcato"), tie[0])
 
 
 def pitch_naiads(voices, measures, selector, index):
@@ -853,57 +862,71 @@ def blank_time_signature(global_context=score["Global Context"], measures="all")
             r"\once \override Score.TimeSignature.stencil = #(blank-time-signature)",
             format_slot="before",
         ),
-        abjad.Selection(global_context).leaf(0),
+        abjad.Selection(global_context).leaf(measures[0]),
     )
-
-    if measures != "all":
-        for string in [
-            r"\once \override Score.BarLine.stencil = ##f",
-            r"\once \override Score.SpanBar.stencil = ##f",
-            r"\once \override Score.TimeSignature.stencil = ##f",
-        ]:
+    for string in [
+        r"\once \override Score.BarLine.stencil = ##f",
+        r"\once \override Score.SpanBar.stencil = ##f",
+        r"\once \override Score.TimeSignature.stencil = ##f",
+    ]:
+        for measure in measures[1:measures[0 + len(measures) - 1]]:
             trinton.attach(
                 voice=global_context,
-                leaves=measures,
+                leaves=[measure],
                 attachment=abjad.LilyPondLiteral(
                     string,
                     format_slot="before",
                 ),
             )
 
-    else:
-        for string in [
-            r"\once \override Score.BarLine.stencil = ##f",
-            r"\once \override Score.SpanBar.stencil = ##f",
-            r"\once \override Score.TimeSignature.stencil = ##f",
-        ]:
-            for skip in abjad.Selection(global_context).leaves().exclude([0]):
-                abjad.attach(
-                    abjad.LilyPondLiteral(
-                        string,
-                        format_slot="before",
-                    ),
-                    skip,
-                )
 
-
-def four_lines(voice, leaves):
-    trinton.attach(
+def four_lines(score, voice, leaves):
+    trinton.attach_multiple(
+        score=score,
         voice=voice,
         leaves=leaves,
-        attachment=abjad.LilyPondLiteral(
-            r"\staff-line-count 4",
-            format_slot="absolute_before",
-        ),
+        attachments=[
+            abjad.LilyPondLiteral(
+                r"\staff-line-count 4",
+                format_slot="absolute_before",
+            ),
+            abjad.Clef("percussion"),
+        ],
     )
 
 
-def five_lines(voice, leaves):
-    trinton.attach(
+def five_lines(score, voice, leaves):
+    trinton.attach_multiple(
+        score=score,
         voice=voice,
         leaves=leaves,
-        attachment=abjad.LilyPondLiteral(
-            r"\staff-line-count 5",
-            format_slot="absolute_before",
-        ),
+        attachments=[
+            abjad.LilyPondLiteral(
+                r"\staff-line-count 5",
+                format_slot="absolute_before",
+            ),
+            abjad.Clef("treble"),
+        ],
     )
+
+# selectors
+
+def subharmonic_selector():
+    def selector(argument):
+        out = []
+        ties = abjad.Selection(argument).logical_ties()
+        for tie in ties:
+            if tie.written_duration > abjad.Duration(1, 8):
+                out.append(tie)
+        return abjad.Selection(out[:]).leaves(pitched=True)
+    return selector
+
+def wrapping_selector():
+    def selector(argument):
+        out = []
+        ties = abjad.Selection(argument).logical_ties()
+        for tie in ties:
+            if tie.written_duration <= abjad.Duration(1, 8):
+                out.append(tie)
+        return abjad.Selection(out[:]).leaves(pitched=True)
+    return selector
