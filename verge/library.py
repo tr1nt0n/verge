@@ -30,12 +30,6 @@ violin_2_voice = score["violin 2 voice"]
 
 violin_3_voice = score["violin 3 voice"]
 
-# rhythm annotations
-
-arcana = "arcana"
-
-naiads = "naiads"
-
 # saved rhythms
 
 collapsing_tuplets_1 = eval("""[(4, 1), (1, 1, 4), (1, 1, 1, 4), (1, 1, 1), (6, 1)]""")
@@ -163,15 +157,12 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
         )
 
-        selections = trinton.make_and_append_rhythm_selections(
+        trinton.make_and_append_rhythm_selections(
             score=score,
             voice_name=voice_name,
             stack=stack,
             durations=durations,
         )
-
-        for sel in selections:
-            abjad.annotate(sel, arcana, True)
 
     else:
         stack = rmakers.stack(
@@ -184,15 +175,12 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
             rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
         )
 
-        selections = trinton.make_and_append_rhythm_selections(
+        trinton.make_and_append_rhythm_selections(
             score=score,
             voice_name=voice_name,
             stack=stack,
             durations=durations,
         )
-
-        for sel in selections:
-            abjad.annotate(sel, arcana, True)
 
 
 def naiads_ii_rhythms(
@@ -222,15 +210,40 @@ def naiads_ii_rhythms(
     _voice_to_stack = {"violin 1 voice": stack1, "violin 2 voice": stack2}
 
     for voice_name in voice_names:
-        selections = trinton.make_and_append_rhythm_selections(
+        trinton.make_and_append_rhythm_selections(
             score=score,
             voice_name=voice_name,
             stack=_voice_to_stack[voice_name],
             durations=durations,
         )
 
-        for sel in selections:
-            abjad.annotate(sel, naiads, True)
+
+def stirring_rhythms(score, voice_name, durations, divisions, index):
+    for duration, division in zip(durations, divisions):
+        stack = rmakers.stack(
+            rmakers.talea(
+                trinton.rotated_sequence(
+                    trinton.logistic_map(
+                        x=4,
+                        r=-1,
+                        n=12,
+                        seed=2,
+                    ),
+                    index,
+                ),
+                division,
+            ),
+            rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.rewrite_dots(),
+            rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        )
+
+        trinton.make_and_append_rhythm_selections(
+            score=score, voice_name=voice_name, stack=stack, durations=[duration]
+        )
 
 
 # pitch tools
@@ -688,6 +701,124 @@ def pitch_naiads(voices, measures, selector, index):
                 for chord in selections:
                     for head in chord.note_heads:
                         abjad.tweak(head).style = r"#'harmonic-mixed"
+
+
+_string_to_pitches = {
+    "IV": [
+        -5,
+        -5,
+        7,
+        -1,
+        -5,
+        -5,
+        -5,
+        0,
+        -5,
+        14,
+        -1,
+        -5,
+        -5,
+    ],
+    "III": trinton.transpose(
+        [
+            -5,
+            -5,
+            7,
+            -1,
+            -5,
+            -5,
+            -5,
+            0,
+            -5,
+            14,
+            -1,
+            -5,
+            -5,
+        ],
+        7,
+    ),
+    "II": trinton.transpose(
+        [
+            -5,
+            -5,
+            7,
+            -1,
+            -5,
+            -5,
+            -5,
+            0,
+            -5,
+            14,
+            -1,
+            -5,
+            -5,
+        ],
+        14,
+    ),
+    "I": trinton.transpose(
+        [
+            -5,
+            -5,
+            7,
+            -1,
+            -5,
+            -5,
+            -5,
+            0,
+            -5,
+            14,
+            -1,
+            -5,
+            -5,
+        ],
+        21,
+    ),
+}
+
+
+def pitch_stirring(voice, measures, selector, string, index):
+    pitches = trinton.rotated_sequence(_string_to_pitches[string], index)
+
+    handler = evans.PitchHandler(
+        pitch_list=pitches,
+        forget=False,
+    )
+
+    for measure in measures:
+
+        grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+
+        current_measure = grouped_measures[measure - 1]
+
+        selections = selector(current_measure)
+
+        handler(voice)
+
+    for measure in measures:
+
+        grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+
+        current_measure = grouped_measures[measure - 1]
+
+        selections = selector(current_measure)
+
+        for leaf in abjad.Selection(selections).leaves():
+            if leaf.written_pitch == -5:
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+            elif leaf.written_pitch == 2:
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+            elif leaf.written_pitch == 9:
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+            elif leaf.written_pitch == 16:
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+            elif leaf.written_duration == abjad.Duration(1, 8):
+                abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
+            elif leaf.written_duration == abjad.Duration(1, 16):
+                abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
+            elif leaf.written_duration == abjad.Duration(1, 32):
+                abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
+            else:
+                abjad.tweak(leaf.note_head).style = r"#'cross"
 
 
 # transposition tools

@@ -14,9 +14,9 @@ from .library import (
     collapsing_tuplets_1,
     collapsing_tuplets_2,
     collapsing_tuplets_3,
-    arcana,
-    naiads,
     pitch_naiads,
+    stirring_rhythms,
+    pitch_stirring,
 )
 
 __all__ = [
@@ -38,4 +38,6 @@ __all__ = [
     "arcana",
     "naiads",
     "pitch_naiads",
+    "stirring_rhythms",
+    "pitch_stirring",
 ]
