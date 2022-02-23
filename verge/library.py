@@ -242,8 +242,6 @@ def stirring_rhythms(score, voice_name, durations, divisions, index):
             rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
             rmakers.rewrite_dots(),
-            # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.beam_groups(beam_rests=True),
         )
 
         trinton.make_and_append_rhythm_selections(
@@ -686,7 +684,7 @@ def pitch_naiads(voices, measures, selector, index):
 
             selections = selector(current_measure)
 
-            handler(voice)
+            handler(selections)
 
         if voice == score["violin 1 voice"]:
             for measure in measures:
@@ -801,7 +799,7 @@ def pitch_stirring(voice, measures, selector, string, index):
 
         selections = selector(current_measure)
 
-        handler(voice)
+        handler(selections)
 
     for measure in measures:
 
@@ -828,6 +826,12 @@ def pitch_stirring(voice, measures, selector, string, index):
                 abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
             else:
                 abjad.tweak(leaf.note_head).style = r"#'cross"
+
+        for tie in abjad.Selection(selections).logical_ties():
+            abjad.attach(
+                abjad.LilyPondLiteral(r"- \baca-circle-markup", format_slot="after"),
+                tie[0],
+            )
 
 
 # transposition tools
@@ -925,12 +929,12 @@ def subharmonic_selector():
     return selector
 
 
-def wrapping_selector():
+def wrapping_selector(duration=abjad.Duration(1, 8)):
     def selector(argument):
         out = []
         ties = abjad.Selection(argument).logical_ties()
         for tie in ties:
-            if tie.written_duration <= abjad.Duration(1, 8):
+            if tie.written_duration <= duration:
                 out.append(tie)
         return abjad.Selection(out[:]).leaves(pitched=True)
 
