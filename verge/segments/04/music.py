@@ -179,7 +179,7 @@ trinton.rewrite_meter_by_measure(
     ],
 )
 
-trinton.annotate_leaves(score)
+# trinton.annotate_leaves(score)
 
 trinton.beam_runs_by_selection(
     score=score,
@@ -253,6 +253,8 @@ verge.octave_down(
         voice="violin 2 voice",
         leaves=[
             5,
+            19,
+            20,
         ],
     )
 )
@@ -294,6 +296,128 @@ verge.pitch_naiads(
 
 # attachments
 
+trinton.write_slur(
+    voice=score["violin 1 voice"],
+    start_slur=[14, 18, 24,],
+    stop_slur=[15, 22, 25,],
+)
+
+trinton.write_slur(
+    voice=score["violin 2 voice"],
+    start_slur=[8,],
+    stop_slur=[11,],
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[0, 5, 12,],
+    attachment=abjad.Articulation("tenuto")
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[14, 18, 19, 21, 23, 24, 25,],
+    attachment=abjad.Articulation(">")
+)
+
+trinton.ottava(
+    score=score,
+    voice="violin 2 voice",
+    start_ottava=[33, 35, 37,],
+    stop_ottava=[33, 35, 37,],
+    octave=1,
+)
+
+violin_2_measures = abjad.Selection(score["violin 2 voice"]).leaves().group_by_measure()
+
+for leaf in abjad.Selection(violin_2_measures[-2]).leaves(pitched=True).exclude([-1]):
+    abjad.attach(abjad.Glissando(), leaf)
+
+trinton.ficta(
+    score=score,
+    voice="violin 2 voice",
+    start_ficta=[32,],
+    stop_ficta=[39,],
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[
+        26,
+        30,
+    ],
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', format_slot="after"),
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[
+        29,
+    ],
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', format_slot="after"),
+)
+
+trinton.attach(
+    voice=score["violin 1 voice"],
+    leaves=[
+        14,
+    ],
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', format_slot="after"),
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[0,],
+    attachment=abjad.Dynamic("mp")
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[2,],
+    attachment=abjad.Dynamic("mf")
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[3,],
+    attachment=abjad.Dynamic("p")
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[0, 14,],
+    attachment=abjad.StartHairpin("<")
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[2,],
+    attachment=abjad.StartHairpin(">")
+)
+
+trinton.attach(
+    voice=score["violin 1 voice"],
+    leaves=[9],
+    attachment=abjad.StartHairpin(">o"),
+)
+
+trinton.attach(
+    voice=score["violin 1 voice"],
+    leaves=[14],
+    attachment=abjad.StartHairpin("o<|"),
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[26,],
+    attachment=abjad.Dynamic("f")
+)
+
+trinton.attach(
+    voice=score["violin 1 voice"],
+    leaves=[25,],
+    attachment=abjad.Dynamic("f")
+)
 
 # render file
 
