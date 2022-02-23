@@ -298,33 +298,65 @@ verge.pitch_naiads(
 
 trinton.write_slur(
     voice=score["violin 1 voice"],
-    start_slur=[14, 18, 24,],
-    stop_slur=[15, 22, 25,],
+    start_slur=[
+        14,
+        18,
+        24,
+    ],
+    stop_slur=[
+        15,
+        22,
+        25,
+    ],
 )
 
 trinton.write_slur(
     voice=score["violin 2 voice"],
-    start_slur=[8,],
-    stop_slur=[11,],
+    start_slur=[
+        8,
+    ],
+    stop_slur=[
+        11,
+    ],
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[0, 5, 12,],
-    attachment=abjad.Articulation("tenuto")
+    leaves=[
+        0,
+        5,
+        12,
+    ],
+    attachment=abjad.Articulation("tenuto"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[14, 18, 19, 21, 23, 24, 25,],
-    attachment=abjad.Articulation(">")
+    leaves=[
+        14,
+        18,
+        19,
+        21,
+        23,
+        24,
+        25,
+    ],
+    attachment=abjad.Articulation(">"),
 )
 
 trinton.ottava(
     score=score,
     voice="violin 2 voice",
-    start_ottava=[33, 35, 37,],
-    stop_ottava=[33, 35, 37,],
+    start_ottava=[
+        33,
+        35,
+        37,
+    ],
+    stop_ottava=[
+        33,
+        35,
+        37,
+    ],
     octave=1,
 )
 
@@ -336,8 +368,12 @@ for leaf in abjad.Selection(violin_2_measures[-2]).leaves(pitched=True).exclude(
 trinton.ficta(
     score=score,
     voice="violin 2 voice",
-    start_ficta=[32,],
-    stop_ficta=[39,],
+    start_ficta=[
+        32,
+    ],
+    stop_ficta=[
+        39,
+    ],
 )
 
 trinton.attach(
@@ -367,32 +403,43 @@ trinton.attach(
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[0,],
-    attachment=abjad.Dynamic("mp")
+    leaves=[
+        0,
+    ],
+    attachment=abjad.Dynamic("mp"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[2,],
-    attachment=abjad.Dynamic("mf")
+    leaves=[
+        2,
+    ],
+    attachment=abjad.Dynamic("mf"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[3,],
-    attachment=abjad.Dynamic("p")
+    leaves=[
+        3,
+    ],
+    attachment=abjad.Dynamic("p"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[0, 14,],
-    attachment=abjad.StartHairpin("<")
+    leaves=[
+        0,
+        14,
+    ],
+    attachment=abjad.StartHairpin("<"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[2,],
-    attachment=abjad.StartHairpin(">")
+    leaves=[
+        2,
+    ],
+    attachment=abjad.StartHairpin(">"),
 )
 
 trinton.attach(
@@ -409,14 +456,18 @@ trinton.attach(
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[26,],
-    attachment=abjad.Dynamic("f")
+    leaves=[
+        26,
+    ],
+    attachment=abjad.Dynamic("f"),
 )
 
 trinton.attach(
     voice=score["violin 1 voice"],
-    leaves=[25,],
-    attachment=abjad.Dynamic("f")
+    leaves=[
+        25,
+    ],
+    attachment=abjad.Dynamic("f"),
 )
 
 # render file
