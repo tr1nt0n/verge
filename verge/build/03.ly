@@ -586,6 +586,10 @@
                     \tweak style #'triangle
                     eqf''2
                     - \tenuto
+                    - \abjad-dashed-line-with-hook
+                    - \tweak bound-details.left.text \markup \concat { {II} \hspace #0.5 }
+                    - \tweak padding 8
+                    \startTextSpan
                     \boxed-markup "XSB" 1
                     r2.
                     \times 4/5
@@ -596,6 +600,7 @@
                         dqf''1
                         - \tenuto
                         r1
+                        \stopTextSpan
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup \concat { \one-seventeen-limit-schisma-down \hspace #0.125 \one-septimal-comma-up \hspace #0.125 \double-sharp-one-syntonic-comma-down  }
@@ -647,6 +652,10 @@
                         \tweak style #'triangle
                         aqf'1
                         - \tenuto
+                        - \abjad-dashed-line-with-hook
+                        - \tweak bound-details.left.text \markup \concat { {III} \hspace #0.5 }
+                        - \tweak padding 6
+                        \startTextSpan
                     }
                     \times 4/7
                     {
@@ -654,6 +663,7 @@
                         gqf'\breve
                         - \tenuto
                         r1.
+                        \stopTextSpan
                     }
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3

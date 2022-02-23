@@ -612,6 +612,30 @@ trinton.write_slur(
     ],
 )
 
+trinton.write_hooked_spanner(
+    voice=score["violin 2 voice"],
+    string=r"\markup {II}",
+    start_leaf=[
+        44,
+    ],
+    stop_leaf=[
+        48,
+    ],
+    padding=8,
+)
+
+trinton.write_hooked_spanner(
+    voice=score["violin 3 voice"],
+    string=r"\markup {III}",
+    start_leaf=[
+        13,
+    ],
+    stop_leaf=[
+        15,
+    ],
+    padding=6,
+)
+
 trinton.attach(
     voice=score["violin 2 voice"], leaves=[0], attachment=abjad.Dynamic("pp")
 )
