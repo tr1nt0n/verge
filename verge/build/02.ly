@@ -50,15 +50,10 @@
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 5/6
                     {
-                        \slurDashed
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 1
                         g'8
-                        - \tweak circled-tip ##t
-                        - \tweak stencil #abjad-flared-hairpin
-                        \<
                         [
-                        (
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 2
                         cs'16
@@ -72,67 +67,43 @@
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
                         ef'16
-                        )
-                        \slurSolid
                     }
                     \times 2/3
                     {
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 3
                         fs'32.
-                        \f
-                        - \staccato
-                        - \marcato
                         r32
                         \set stemLeftBeamCount = 4
                         \set stemRightBeamCount = 3
-                        e''64
-                        - \staccato
-                        - \marcato
+                        e'64
                     }
                     r8.
                     r16
-                    \slurDashed
                     e'8
-                    - \tweak circled-tip ##t
-                    - \tweak stencil #abjad-flared-hairpin
-                    \<
-                    (
                     af'32
-                    ef''16.
-                    )
-                    \slurSolid
+                    ef'16.
                     r32
                     r32
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 7/6
                     {
-                        r8
-                        r8
+                        r4
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 2
                         f'16
-                        \f
-                        - \staccato
-                        - \marcato
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
-                        cs''16
-                        - \staccato
-                        - \marcato
+                        cs'16
                     }
                     \times 2/3
                     {
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 2
-                        a''16
-                        - \staccato
-                        - \marcato
+                        a'16
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 0
                         ef'32
-                        - \staccato
-                        - \marcato
                         ]
                     }
                     s1 * 7/15
@@ -150,9 +121,7 @@
                 \context Voice = "violin 2 voice"
                 {
                     r16
-                    \slurDashed
-                    g4
-                    (
+                    g'4
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 7/5
                     {
@@ -160,12 +129,10 @@
                         [
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
-                        af8
+                        af'8
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 2
                         cs'16
-                        )
-                        \slurSolid
                         r16
                     }
                     \times 4/5
@@ -174,30 +141,22 @@
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 1
                         f'32.
-                        - \staccato
-                        - \marcato
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5
                     {
-                        r16
-                        r8
+                        r8.
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
                         d'8
-                        - \staccato
-                        - \marcato
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5
                     {
-                        r16
-                        r32
-                        \slurDashed
+                        r16.
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
                         cs'16
-                        (
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 7/5
@@ -207,21 +166,15 @@
                         ef'16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
-                        ef''16
-                        )
-                        \slurSolid
-                        r16
-                        r16
-                        r16
+                        ef'16
+                        r8.
                     }
                     \times 4/5
                     {
                         r32
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 3
-                        fs''32
-                        - \staccato
-                        - \marcato
+                        fs'32
                         r64
                         ]
                     }
@@ -231,25 +184,18 @@
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \flat-one-syntonic-comma-up  }
                         af'2..
-                        \mp
                         ^ \markup \center-align { +8 }
-                        \<
-                        \(
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup \concat { \one-seventeen-limit-schisma-down \hspace #0.125 \one-septimal-comma-up \hspace #0.125 \double-sharp-one-syntonic-comma-down  }
                     css''2
-                    \mf
                     ^ \markup \center-align { +22 }
-                    \>
-                    \)
                     \tweak edge-height #'(0.7 . 0)
                     \times 4/5
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \flat-two-syntonic-comma-up  }
                         af'2
-                        \mp
                         ^ \markup \center-align { +29 }
                     }
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
@@ -268,17 +214,13 @@
                     {
                         r4
                         [
-                        \slurDashed
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 1
-                        cs'''8.
-                        (
+                        cs'8.
                     }
                     r8
                     r8.
                     g'16
-                    )
-                    \slurSolid
                     r16
                     \times 4/7
                     {
@@ -286,55 +228,36 @@
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 3
                         af'32
-                        - \staccato
-                        - \marcato
-                        r32.
-                        r64
-                        ]
+                        r16
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7
                     {
-                        e'''4
-                        - \staccato
-                        - \marcato
-                        r8
+                        e'4
+                        r8.
                         [
-                        r16
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7
                     {
+                        r8
                         r32
-                        r16
-                        r32
-                        r32
-                        \slurDashed
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 3
                         af'32
-                        (
                         \set stemLeftBeamCount = 3
                         \set stemRightBeamCount = 1
                         f'32
-                        )
-                        \slurSolid
                     }
                     r16
                     r8.
-                    c'''8.
-                    - \staccato
-                    - \marcato
+                    c'8.
                     \times 4/7
                     {
-                        r64
-                        r64
-                        r16
+                        r16.
                         \set stemLeftBeamCount = 4
                         \set stemRightBeamCount = 0
-                        ef''64
-                        - \staccato
-                        - \marcato
+                        ef'64
                         ]
                     }
                     \tweak edge-height #'(0.7 . 0)
@@ -344,13 +267,11 @@
                         \tweak Accidental.text \markup { \abjad-natural  }
                         c'2
                         ^ \markup \center-align { -6 }
-                        \(
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup { \sharp-one-syntonic-comma-down  }
                     fs'2
                     ^ \markup \center-align { -12 }
-                    \)
                     \tweak edge-height #'(0.7 . 0)
                     \times 8/15
                     {

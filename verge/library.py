@@ -431,6 +431,14 @@ def pitch_arcana(voices, measures, selector, index):
 
             current_measure = grouped_measures[measure - 1]
 
+            top_level_components = trinton.get_top_level_components_from_leaves(
+                current_measure
+            )
+
+            for tuplet in abjad.Selection(top_level_components).tuplets():
+                for rest_group in abjad.Selection(tuplet).rests().group_by_contiguity():
+                    abjad.mutate.fuse(rest_group)
+
             selections = selector(current_measure)
 
             sel.append(selections)
