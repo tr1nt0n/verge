@@ -54,10 +54,12 @@
                     r2
                     (
                     r8
+                    [
                     ef'8
                     - \staccato
                     - \tenuto
                     )
+                    ]
                     \slurSolid
                     s1 * 3/4
                     s1 * 1/2
@@ -101,7 +103,6 @@
                         \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         g16
-                        [
                         \(
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
@@ -272,11 +273,11 @@
                         \slurDashed
                         r4.
                         \pp
-                        [
                         (
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 1
                         a'8
+                        [
                         r8
                         )
                         ]
@@ -613,6 +614,8 @@
                             \tweak style #'harmonic-mixed
                             g''
                         >16
+                        ]
+                        [
                         \set suggestAccidentals = ##f
                     }
                     \tweak style #'triangle

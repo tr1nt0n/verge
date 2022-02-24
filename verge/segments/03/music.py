@@ -301,8 +301,6 @@ trinton.rewrite_meter_by_measure(
     ],
 )
 
-# trinton.annotate_leaves(score)
-
 trinton.beam_runs_by_selection(
     score=score,
     voice="violin 2 voice",
@@ -321,18 +319,6 @@ trinton.beam_runs_by_selection(
     beam_rests=True,
 )
 
-trinton.beam_runs_by_selection(
-    score=score,
-    voice="violin 1 voice",
-    start_beam=[
-        10,
-    ],
-    stop_beam=[
-        38,
-    ],
-    beam_rests=True,
-)
-
 # pitching
 
 verge.pitch_arcana(
@@ -347,6 +333,18 @@ verge.pitch_arcana(
     selector=baca.selectors.pleaves(),
     index=33,
 )
+
+# trinton.annotate_leaves(score)
+
+for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
+    for number in [0, 6, 7, 8, 9,]:
+        trinton.unbeam_quarters(
+            abjad.Selection(score[voice_name]).leaves().group_by_measure()[number]
+        )
+
+abjad.detach(abjad.StartBeam, abjad.Selection(score["violin 1 voice"]).leaf(16))
+
+abjad.attach(abjad.StartBeam(), abjad.Selection(score["violin 1 voice"]).leaf(10))
 
 verge.octave_down(
     [

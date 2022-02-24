@@ -326,7 +326,7 @@ verge.pitch_conjuring(
 
 # attachments
 
-abjad.attach(abjad.StopBeam(), abjad.Selection(score["violin 3 voice"]).leaf(8))
+# abjad.attach(abjad.StopBeam(), abjad.Selection(score["violin 3 voice"]).leaf(8))
 
 for start, stop in zip(
     [
@@ -359,6 +359,16 @@ for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
             for tie in abjad.Selection(leaf).logical_ties():
                 abjad.attach(abjad.Articulation("staccato"), tie[0])
                 abjad.attach(abjad.Articulation("marcato"), tie[0])
+    sel = []
+    for number in [0, 1, 2, 3, 4, 5, 6,]:
+        current_measure = measures[number]
+        for leaf in current_measure:
+            sel.append(leaf)
+    trinton.unbeam_quarters(sel)
+
+abjad.detach(abjad.StartBeam, abjad.Selection(score["violin 2 voice"]).leaf(3))
+abjad.attach(abjad.StartBeam(), abjad.Selection(score["violin 2 voice"]).leaf(0))
+
 
 for voice_name in ["violin 2 voice", "violin 3 voice"]:
     measures = abjad.Selection(score[voice_name]).leaves().group_by_measure()

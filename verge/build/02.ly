@@ -63,12 +63,14 @@
                         \set stemRightBeamCount = 2
                         cs'16
                         r8.
+                        ]
                     }
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 7/6
                     {
                         r4
                         r16
+                        [
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
                         ef'16
@@ -101,6 +103,7 @@
                     af'32
                     ef''16.
                     r16
+                    ]
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 7/6
                     {
@@ -113,6 +116,7 @@
                         \f
                         - \staccato
                         - \marcato
+                        [
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
                         cs''16
@@ -150,6 +154,7 @@
                     \slurDashed
                     r16
                     (
+                    [
                     g8
                     ~
                     g8
@@ -157,7 +162,6 @@
                     \times 7/5
                     {
                         r16
-                        [
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
                         af8
@@ -264,11 +268,11 @@
                     {
                         \slurDashed
                         r4
-                        [
                         (
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 1
                         cs'''8.
+                        [
                     }
                     r8.
                     r8
