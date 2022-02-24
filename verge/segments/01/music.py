@@ -353,11 +353,13 @@ trinton.attach(
 for start, stop in zip(
     [
         abjad.Selection(score["violin 1 voice"]).leaf(4),
-        abjad.Selection(score["violin 2 voice"]).leaf(34),
+        abjad.Selection(score["violin 2 voice"]).leaf(33),
+        abjad.Selection(score["violin 3 voice"]).leaf(4),
     ],
     [
         abjad.Selection(score["violin 1 voice"]).leaf(6),
         abjad.Selection(score["violin 2 voice"]).leaf(35),
+        abjad.Selection(score["violin 3 voice"]).leaf(5),
     ],
 ):
     trinton.dashed_slur(

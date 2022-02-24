@@ -174,15 +174,15 @@
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5
                     {
+                        \slurDashed
                         r4
                         \mp
                         \<
-                        \slurDashed
+                        (
                         a'2.
                         \mf
                         - \tweak circled-tip ##t
                         \>
-                        (
                         fs'4
                         \!
                         )
@@ -319,8 +319,12 @@
                     \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7
                     {
+                        \slurDashed
                         r4.
+                        (
                         d''2
+                        )
+                        \slurSolid
                     }
                     s1 * 3/4
                     s1 * 1/2
