@@ -398,7 +398,7 @@ trinton.attach(
     leaves=[
         14,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Crine" 1', format_slot="after"),
 )
 
 trinton.attach(

@@ -90,7 +90,7 @@
                         \<
                         [
                         \(
-                        \boxed-markup "Ord." 1
+                        \boxed-markup "Crine" 1
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 3
                         \abjad-color-music #'DarkRed
