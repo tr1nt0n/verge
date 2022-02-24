@@ -432,12 +432,14 @@ for voice_name, index in zip(
 
 for start, stop in zip(
     [
+        abjad.Selection(score["violin 1 voice"]).leaf(0),
         abjad.Selection(score["violin 2 voice"]).leaf(0),
         abjad.Selection(score["violin 3 voice"]).leaf(0),
     ],
     [
+        abjad.Selection(score["violin 1 voice"]).leaf(2),
         abjad.Selection(score["violin 2 voice"]).leaf(2),
-        abjad.Selection(score["violin 3 voice"]).leaf(1),
+        abjad.Selection(score["violin 3 voice"]).leaf(2),
     ],
 ):
     trinton.dashed_slur(
@@ -458,9 +460,9 @@ trinton.attach_multiple(
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[
-        4,
-        13,
-        18,
+        3,
+        12,
+        19,
     ],
     attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', format_slot="after"),
 )
@@ -468,9 +470,9 @@ trinton.attach(
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[
-        7,
+        8,
         14,
-        29,
+        28,
     ],
     attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', format_slot="after"),
 )
@@ -497,7 +499,7 @@ trinton.attach(
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[
-        44,
+        43,
     ],
     attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', format_slot="after"),
 )
@@ -505,7 +507,7 @@ trinton.attach(
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[
-        49,
+        48,
     ],
     attachment=abjad.LilyPondLiteral(
         r'\boxed-markup "NB, Ord." 1', format_slot="after"
@@ -515,7 +517,7 @@ trinton.attach(
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[
-        46,
+        45,
     ],
     attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', format_slot="after"),
 )
@@ -524,16 +526,16 @@ trinton.glissando(
     score=score,
     voice="violin 2 voice",
     start_gliss=[
-        6,
-        8,
-        15,
-        21,
+        5,
+        7,
+        14,
+        20,
     ],
     stop_gliss=[
-        7,
-        9,
-        18,
-        23,
+        6,
+        8,
+        17,
+        22,
     ],
 )
 
@@ -549,20 +551,20 @@ trinton.ottava(
     score=score,
     voice="violin 2 voice",
     start_ottava=[
-        20,
-        31,
-        33,
-        35,
-        38,
-        42,
+        19,
+        30,
+        32,
+        34,
+        37,
+        41,
     ],
     stop_ottava=[
-        20,
-        31,
-        33,
-        35,
-        38,
-        42,
+        19,
+        30,
+        32,
+        34,
+        37,
+        41,
     ],
     octave=1,
 )
@@ -571,10 +573,10 @@ trinton.ficta(
     score=score,
     voice="violin 2 voice",
     start_ficta=[
-        30,
+        29,
     ],
     stop_ficta=[
-        43,
+        42,
     ],
 )
 
@@ -616,10 +618,10 @@ trinton.write_hooked_spanner(
     voice=score["violin 2 voice"],
     string=r"\markup {II}",
     start_leaf=[
-        44,
+        43,
     ],
     stop_leaf=[
-        48,
+        47,
     ],
     padding=8,
 )
@@ -628,10 +630,10 @@ trinton.write_hooked_spanner(
     voice=score["violin 3 voice"],
     string=r"\markup {III}",
     start_leaf=[
-        13,
+        12,
     ],
     stop_leaf=[
-        15,
+        14,
     ],
     padding=6,
 )
@@ -641,7 +643,7 @@ trinton.attach(
 )
 
 trinton.attach(
-    voice=score["violin 2 voice"], leaves=[4], attachment=abjad.StartHairpin("<")
+    voice=score["violin 2 voice"], leaves=[3], attachment=abjad.StartHairpin("<")
 )
 
 trinton.attach(
@@ -655,7 +657,7 @@ trinton.attach(
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[
-        49,
+        48,
     ],
     attachment=abjad.Dynamic("mp"),
 )

@@ -179,8 +179,6 @@ trinton.rewrite_meter_by_measure(
     ],
 )
 
-# trinton.annotate_leaves(score)
-
 trinton.beam_runs_by_selection(
     score=score,
     voice="violin 2 voice",
@@ -227,6 +225,8 @@ verge.pitch_arcana(
     selector=baca.selectors.pleaves(),
     index=37,
 )
+
+# trinton.annotate_leaves(score)
 
 verge.double_octave_up(
     trinton.make_leaf_selection(

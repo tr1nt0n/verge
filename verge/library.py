@@ -705,6 +705,9 @@ def pitch_naiads(voices, measures, selector, index):
                 for leaf in selection:
                     abjad.tweak(leaf.note_head).Accidental.transparent = True
 
+                for leaf in current_measure:
+                    abjad.label.color_leaves(leaf, "#DarkRed")
+
         elif voice == score["violin 2 voice"]:
             for measure in measures:
                 grouped_measures = abjad.Selection(voice).leaves().group_by_measure()

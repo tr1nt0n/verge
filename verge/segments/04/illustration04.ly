@@ -88,6 +88,7 @@
                     {
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 1
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         g8
                         - \tweak circled-tip ##t
@@ -98,39 +99,50 @@
                         \boxed-markup "Ord." 1
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 3
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         bf32
                         \)
+                        \abjad-color-music #'DarkRed
                         r32
                     }
                     \times 2/3
                     {
+                        \abjad-color-music #'DarkRed
                         r16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'16
                         \(
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         f'8
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 0
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'8
                         ]
                     }
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     bf8
                     [
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     g16
                     \)
+                    \abjad-color-music #'DarkRed
                     r16
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     bf16
                     \(
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     d'16
                     \f

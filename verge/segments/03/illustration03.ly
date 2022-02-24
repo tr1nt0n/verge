@@ -56,11 +56,15 @@
             {
                 \context Voice = "violin 1 voice"
                 {
+                    \slurDashed
                     r2
+                    (
                     r8
                     ef'8
                     - \staccato
                     - \tenuto
+                    )
+                    \slurSolid
                     s1 * 3/4
                     s1 * 1/2
                     s1 * 7/4
@@ -70,6 +74,7 @@
                     s1 * 7/4
                     \staff-line-count 4
                     \clef "percussion"
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     g16
                     - \tweak circled-tip ##t
@@ -77,16 +82,21 @@
                     [
                     \(
                     \boxed-markup "Crine" 1
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     bf16
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     d'16
                     \)
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     f'16
                     \(
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     d'16
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     bf16
                     \)
@@ -94,31 +104,38 @@
                     {
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         g16
                         [
                         \(
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         bf16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         f'16
                         \)
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         g16
                         \(
                     }
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     bf16
+                    \abjad-color-music #'DarkRed
                     \tweak Accidental.transparent ##t
                     d'16
                     \)
@@ -126,53 +143,64 @@
                     {
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         f'16
                         \(
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         bf16
                         \)
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         g16
                         \(
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         bf16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'16
                         \)
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         f'16
                         \(
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         bf16
                         \)
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         g16
                         \(
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         bf16
                     }
@@ -180,24 +208,29 @@
                     {
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         f'16
                         \)
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         g16
                         \(
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 2
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         bf16
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 0
+                        \abjad-color-music #'DarkRed
                         \tweak Accidental.transparent ##t
                         d'16
                         \!
@@ -243,18 +276,17 @@
                     \times 6/5
                     {
                         \slurDashed
-                        r8
+                        r4.
                         \pp
                         [
                         (
-                        r4
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 1
-                        a8
-                        )
-                        \slurSolid
+                        a'8
                         r8
+                        )
                         ]
+                        \slurSolid
                     }
                     \tweak style #'cross
                     e''2.
@@ -280,7 +312,6 @@
                     e'''4
                     ~
                     - \baca-circle-markup
-                    \boxed-markup "1/2 CLT" 1
                     \tweak style #'harmonic-mixed
                     e'''8
                     [
@@ -297,6 +328,7 @@
                     af''8
                     ~
                     - \baca-circle-markup
+                    \boxed-markup "1/2 CLT" 1
                     \tweak style #'cross
                     af''16.
                     \tweak style #'cross
@@ -314,12 +346,12 @@
                     e''8..
                     [
                     - \baca-circle-markup
-                    \boxed-markup "1/2 CLT" 1
                     \tweak style #'harmonic-mixed
                     a''32
                     ~
                     \glissando
                     - \baca-circle-markup
+                    \boxed-markup "1/2 CLT" 1
                     \hide NoteHead
                     \override Accidental.stencil = ##f
                     \override NoteColumn.glissando-skip = ##t
@@ -337,7 +369,6 @@
                     e''16.
                     ~
                     - \baca-circle-markup
-                    \boxed-markup "CLT" 1
                     \tweak style #'cross
                     e''8
                     \ottava 1
@@ -345,6 +376,7 @@
                     b'''8
                     ]
                     - \baca-circle-markup
+                    \boxed-markup "CLT" 1
                     \ottava 0
                     \tweak style #'cross
                     af''4
@@ -385,7 +417,6 @@
                     e''4
                     \tweak style #'cross
                     e''1..
-                    \f
                     - \baca-circle-markup
                     \boxed-markup "1/2 CLT" 1
                     \tweak text #tuplet-number::calc-fraction-text
@@ -402,6 +433,7 @@
                             \tweak style #'harmonic-mixed
                             e''
                         >4
+                        \f
                         \glissando
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 2
@@ -638,10 +670,9 @@
                         c'4
                         (
                         cs'4.
+                        r4
                         )
                         \slurSolid
-                        r8
-                        r8
                     }
                     s1 * 3/4
                     s1 * 1/2
