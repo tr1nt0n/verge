@@ -337,7 +337,13 @@ verge.pitch_arcana(
 # trinton.annotate_leaves(score)
 
 for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
-    for number in [0, 6, 7, 8, 9,]:
+    for number in [
+        0,
+        6,
+        7,
+        8,
+        9,
+    ]:
         trinton.unbeam_quarters(
             abjad.Selection(score[voice_name]).leaves().group_by_measure()[number]
         )

@@ -360,7 +360,15 @@ for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
                 abjad.attach(abjad.Articulation("staccato"), tie[0])
                 abjad.attach(abjad.Articulation("marcato"), tie[0])
     sel = []
-    for number in [0, 1, 2, 3, 4, 5, 6,]:
+    for number in [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+    ]:
         current_measure = measures[number]
         for leaf in current_measure:
             sel.append(leaf)
