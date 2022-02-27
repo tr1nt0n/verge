@@ -753,6 +753,14 @@ trinton.ottava(
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[
+        0,
+    ],
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', format_slot="after"),
+)
+
+trinton.attach(
+    voice=score["violin 2 voice"],
+    leaves=[
         35,
         63,
         92,
