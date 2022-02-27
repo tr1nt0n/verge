@@ -1298,7 +1298,7 @@
                     \staff-line-count 5
                     \clef "treble"
                     f'16..
-                    \mf
+                    \p
                     \<
                     [
                     \(
@@ -1309,20 +1309,28 @@
                     d''64
                     \)
                     g'''32.
+                    \fp
                     - \tenuto
                     ~
                     ]
                     g16
+                    \ff
                     - \marcato
                     - \staccato
                     [
                     cs'16
+                    \mp
                     - \marcato
                     - \staccato
                     g16..
+                    \f
                     - \marcato
                     - \staccato
                     a'64
+                    \fp
+                    - \tweak circled-tip ##t
+                    - \tweak stencil #abjad-flared-hairpin
+                    \>
                     ~
                     ]
                     \(
@@ -1335,22 +1343,28 @@
                     af'16
                     \)
                     a16
+                    \f
                     - \marcato
                     - \staccato
                     ]
                     fs'2.
+                    \p
+                    \<
                     ~
                     fs'8
                     [
                     g'''8
-                    \ff
-                    - \tweak stencil #abjad-flared-hairpin
+                    \mp
+                    - \tweak circled-tip ##t
                     \>
                     ]
                     \(
                     cs'''1.
                     \)
                     f''4
+                    \p
+                    - \tweak circled-tip ##t
+                    \>
                     ~
                     \(
                     f''8.
@@ -1365,20 +1379,23 @@
                     \)
                     [
                     d'32
+                    \<
                     ]
                     \(
                     a'16..
                     [
                     ef''64
                     f''32..
+                    \f
                     \)
                     d'128
+                    \mp
                     ~
                     d'32
                     ~
                     d'128
                     fs'''64.
-                    \p
+                    \ff
                     - \marcato
                     - \staccato
                     ]
@@ -1407,7 +1424,6 @@
                     }
                     \times 8/13
                     {
-                        \set suggestAccidentals = ##t
                         \set stemLeftBeamCount = 0
                         \set stemRightBeamCount = 3
                         \tweak style #'cross
@@ -1479,7 +1495,6 @@
                         \tweak style #'cross
                         g32
                         - \baca-circle-markup
-                        \set suggestAccidentals = ##f
                     }
                     \tweak style #'cross
                     g8
@@ -1490,6 +1505,9 @@
                     - \baca-circle-markup
                     \tweak style #'cross
                     g'4.
+                    \mf
+                    - \tweak stencil #abjad-flared-hairpin
+                    \>
                     \glissando
                     - \baca-circle-markup
                     \boxed-markup "1/2 CLT" 1
@@ -1503,19 +1521,29 @@
                         \set stemRightBeamCount = 1
                         \tweak style #'cross
                         a'8
+                        \p
                         ]
                         - \baca-circle-markup
                         \tweak style #'cross
                         a'4.
+                        \fp
+                        - \tweak circled-tip ##t
+                        - \tweak stencil #abjad-flared-hairpin
+                        \>
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
                         \tweak style #'cross
                         a'8
+                        \p
                         ]
                         - \baca-circle-markup
                         \tweak style #'cross
                         d''4
+                        \fp
+                        - \tweak circled-tip ##t
+                        - \tweak stencil #abjad-flared-hairpin
+                        \>
                         - \baca-circle-markup
                     }
                     \times 8/13
@@ -1524,6 +1552,8 @@
                         \set stemRightBeamCount = 3
                         \tweak style #'cross
                         a'32
+                        - \tweak circled-tip ##t
+                        \<
                         [
                         \glissando
                         - \baca-circle-markup
@@ -1596,6 +1626,7 @@
                     {
                         \tweak style #'cross
                         a'4
+                        \f
                         \glissando
                         - \baca-circle-markup
                         \tweak style #'cross
@@ -1616,22 +1647,32 @@
                         \set stemRightBeamCount = 2
                         \tweak style #'cross
                         a'16
+                        \p
                         [
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
                         \tweak style #'cross
                         a'8.
+                        \fp
+                        - \tweak circled-tip ##t
+                        - \tweak stencil #abjad-flared-hairpin
+                        \>
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 2
                         \tweak style #'cross
                         a'16
+                        \p
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
                         \tweak style #'harmonic-mixed
                         a''8
+                        \fp
+                        - \tweak circled-tip ##t
+                        - \tweak stencil #abjad-flared-hairpin
+                        \>
                         - \baca-circle-markup
                         \boxed-markup "1/2 CLT" 1
                     }
@@ -1642,6 +1683,8 @@
                         \set stemRightBeamCount = 1
                         \tweak style #'harmonic-mixed
                         cs''8
+                        - \tweak circled-tip ##t
+                        \<
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
@@ -1711,23 +1754,30 @@
                         \set stemRightBeamCount = 2
                         \tweak style #'cross
                         d'16
+                        \f
                         \glissando
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
                         \tweak style #'harmonic-mixed
                         a''16
+                        \p
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
                         \tweak style #'cross
                         fs'8.
+                        \fp
+                        - \tweak circled-tip ##t
+                        - \tweak stencil #abjad-flared-hairpin
+                        \>
                         - \baca-circle-markup
                         \boxed-markup "CLT" 1
                         \set stemLeftBeamCount = 2
                         \set stemRightBeamCount = 1
                         \tweak style #'cross
                         d'16
+                        \p
                         - \baca-circle-markup
                     }
                     \tweak text #tuplet-number::calc-fraction-text
@@ -1741,11 +1791,17 @@
                         - \baca-circle-markup
                         \tweak style #'cross
                         d'4.
+                        \fp
+                        - \tweak circled-tip ##t
+                        - \tweak stencil #abjad-flared-hairpin
+                        \>
                         - \baca-circle-markup
                         \set stemLeftBeamCount = 1
                         \set stemRightBeamCount = 1
                         \tweak style #'cross
                         d'8
+                        - \tweak circled-tip ##t
+                        \<
                         \glissando
                         - \baca-circle-markup
                         \tweak style #'cross
