@@ -809,80 +809,95 @@ trinton.attach_multiple(
     score=score,
     voice="violin 2 voice",
     leaves=[0],
-    attachments=[
-        abjad.Dynamic("p"),
-        abjad.StartHairpin("<")
-    ]
+    attachments=[abjad.Dynamic("p"), abjad.StartHairpin("<")],
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[4,],
-    attachment=abjad.Dynamic("fp")
+    leaves=[
+        4,
+    ],
+    attachment=abjad.Dynamic("fp"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[5, 30,],
-    attachment=abjad.Dynamic("ff")
+    leaves=[
+        5,
+        30,
+    ],
+    attachment=abjad.Dynamic("ff"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[6, 27, 31,],
-    attachment=abjad.Dynamic("mp")
+    leaves=[
+        6,
+        27,
+        31,
+    ],
+    attachment=abjad.Dynamic("mp"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[7, 13, 26,],
-    attachment=abjad.Dynamic("f")
+    leaves=[
+        7,
+        13,
+        26,
+    ],
+    attachment=abjad.Dynamic("f"),
 )
 
 trinton.attach_multiple(
     score=score,
     voice="violin 2 voice",
-    leaves=[8, 53, 55, 74, 76, 92, 95,],
-    attachments=[
-        abjad.Dynamic("fp"),
-        abjad.StartHairpin("|>o")
-    ]
+    leaves=[
+        8,
+        53,
+        55,
+        74,
+        76,
+        92,
+        95,
+    ],
+    attachments=[abjad.Dynamic("fp"), abjad.StartHairpin("|>o")],
 )
 
 trinton.attach_multiple(
     score=score,
     voice="violin 2 voice",
-    leaves=[14,],
-    attachments=[
-        abjad.Dynamic("p"),
-        abjad.StartHairpin("<")
-    ]
+    leaves=[
+        14,
+    ],
+    attachments=[abjad.Dynamic("p"), abjad.StartHairpin("<")],
 )
 
 trinton.attach_multiple(
     score=score,
     voice="violin 2 voice",
-    leaves=[16,],
-    attachments=[
-        abjad.Dynamic("mp"),
-        abjad.StartHairpin(">o")
-    ]
+    leaves=[
+        16,
+    ],
+    attachments=[abjad.Dynamic("mp"), abjad.StartHairpin(">o")],
 )
 
 trinton.attach_multiple(
     score=score,
     voice="violin 2 voice",
-    leaves=[18,],
-    attachments=[
-        abjad.Dynamic("p"),
-        abjad.StartHairpin(">o")
-    ]
+    leaves=[
+        18,
+    ],
+    attachments=[abjad.Dynamic("p"), abjad.StartHairpin(">o")],
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[23, 35,],
-    attachment=abjad.StartHairpin("<")
+    leaves=[
+        23,
+        35,
+    ],
+    attachment=abjad.StartHairpin("<"),
 )
 
 trinton.attach(
@@ -906,23 +921,33 @@ trinton.attach(
 trinton.attach_multiple(
     score=score,
     voice="violin 2 voice",
-    leaves=[50,],
-    attachments=[
-        abjad.Dynamic("mf"),
-        abjad.StartHairpin("|>")
-    ]
+    leaves=[
+        50,
+    ],
+    attachments=[abjad.Dynamic("mf"), abjad.StartHairpin("|>")],
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[52, 54, 73, 75, 91, 93,],
-    attachment=abjad.Dynamic("p")
+    leaves=[
+        52,
+        54,
+        73,
+        75,
+        91,
+        93,
+    ],
+    attachment=abjad.Dynamic("p"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[56, 77, 96,],
-    attachment=abjad.StartHairpin("o<")
+    leaves=[
+        56,
+        77,
+        96,
+    ],
+    attachment=abjad.StartHairpin("o<"),
 )
 
 trinton.attach_multiple(

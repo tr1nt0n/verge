@@ -29,21 +29,32 @@ for voice_name in ["violin 1 voice", "violin 3 voice"]:
     trinton.append_rests(
         score=score,
         voice=voice_name,
-        rests=[abjad.Skip((1, 1), multiplier=_) for _ in [
-            (3, 4),
-            (5, 4),
-            (7, 4),
-            (6, 4),
-            (5, 4),
-        ]]
+        rests=[
+            abjad.Skip((1, 1), multiplier=_)
+            for _ in [
+                (3, 4),
+                (5, 4),
+                (7, 4),
+                (6, 4),
+                (5, 4),
+            ]
+        ],
     )
 
 verge.stirring_rhythms(
     score=score,
     voice_name="violin 2 voice",
-    durations=[(8, 4), (13, 4), (5, 4),],
-    divisions=[16, 8, 32,],
-    index=0
+    durations=[
+        (8, 4),
+        (13, 4),
+        (5, 4),
+    ],
+    divisions=[
+        16,
+        8,
+        32,
+    ],
+    index=0,
 )
 
 # global attachments
@@ -51,7 +62,7 @@ verge.stirring_rhythms(
 trinton.attach(
     voice=score["Global Context"],
     leaves=[0],
-    attachment=abjad.MetronomeMark((1, 4), 47)
+    attachment=abjad.MetronomeMark((1, 4), 47),
 )
 
 trinton.attach_multiple(
@@ -60,10 +71,11 @@ trinton.attach_multiple(
     leaves=[-1],
     attachments=[
         abjad.LilyPondLiteral(
-            r"\once \override Score.BarLine.transparent = ##f", format_slot="absolute_after"
+            r"\once \override Score.BarLine.transparent = ##f",
+            format_slot="absolute_after",
         ),
-        abjad.BarLine("|.")
-    ]
+        abjad.BarLine("|."),
+    ],
 )
 
 # meter rewriting and beaming
@@ -78,9 +90,17 @@ trinton.beam_score(score)
 
 for measures, string, index in zip(
     [
-        [1, 2,],
-        [3, 4,],
-        [5,],
+        [
+            1,
+            2,
+        ],
+        [
+            3,
+            4,
+        ],
+        [
+            5,
+        ],
     ],
     [
         "III",
@@ -91,14 +111,14 @@ for measures, string, index in zip(
         0,
         2,
         3,
-    ]
+    ],
 ):
     verge.pitch_stirring(
         voice=score["violin 2 voice"],
         measures=measures,
         selector=baca.selectors.pleaves(),
         string=string,
-        index=index
+        index=index,
     )
 
 # attachments
@@ -106,8 +126,18 @@ for measures, string, index in zip(
 trinton.glissando(
     score=score,
     voice="violin 2 voice",
-    start_gliss=[3, 13, 21, 31,],
-    stop_gliss=[5, 14, 22, 33,],
+    start_gliss=[
+        3,
+        13,
+        21,
+        31,
+    ],
+    stop_gliss=[
+        5,
+        14,
+        22,
+        33,
+    ],
 )
 
 trinton.attach(
@@ -115,7 +145,9 @@ trinton.attach(
     leaves=[
         0,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "NB, 1/2 CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(
+        r'\boxed-markup "NB, 1/2 CLT" 1', format_slot="after"
+    ),
 )
 
 trinton.attach(
@@ -141,13 +173,26 @@ trinton.attach(
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[0, 7, 12, 22, 27, 33,],
+    leaves=[
+        0,
+        7,
+        12,
+        22,
+        27,
+        33,
+    ],
     attachment=abjad.Dynamic("ppp"),
 )
 
 trinton.attach(
     voice=score["violin 2 voice"],
-    leaves=[5, 11, 21, 25, 29,],
+    leaves=[
+        5,
+        11,
+        21,
+        25,
+        29,
+    ],
     attachment=abjad.Dynamic("mp"),
 )
 
