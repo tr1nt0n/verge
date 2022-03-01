@@ -136,7 +136,7 @@ for number in [
 
 abjad.override(
     abjad.Selection(score["violin 1 voice"]).tuplet(5)
-).TupletNumber.text = abjad.Markup(r"\markup \italic { 3:5 }")
+).TupletNumber.text = abjad.Markup(r"\markup \italic { 6:5 }")
 
 trinton.handwrite(
     score=score,

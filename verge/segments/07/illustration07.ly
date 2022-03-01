@@ -157,7 +157,7 @@
                         - \staccato
                         - \marcato
                     }
-                    \override TupletNumber.text = \markup \italic { 3:5 }
+                    \override TupletNumber.text = \markup \italic { 6:5 }
                     \times 15/12
                     {
                         r2
