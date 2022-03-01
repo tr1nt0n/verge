@@ -191,7 +191,7 @@ string = "c'2.~ c'2~ c'4 c'1. c'16 c'8 c'32 c'32 c'8 c'8 c'2~ c'2.~ c'4 c'8 c'8 
 
 score["violin 2 voice"].extend(string)
 
-trinton.reduce_tuplets(score=score, voice="violin 1 voice", tuplets="all")
+trinton.reduce_tuplets(score=score, voice="violin 1 voice", tuplets=[2])
 
 trinton.append_rests(
     score=score,
@@ -484,6 +484,8 @@ verge.pitch_earthen(
 # trinton.annotate_leaves(score)
 
 # attachments
+
+abjad.detach(abjad.Tie, abjad.Selection(score["violin 2 voice"]).leaf(4))
 
 verge.five_lines(
     score=score,

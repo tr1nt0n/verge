@@ -101,7 +101,7 @@
                     s1 * 7/4
                     s1 * 1/4
                     s1 * 3/2
-                    \override TupletNumber.text = \markup \italic 49:48
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 48/49
                     {
                         \set stemLeftBeamCount = 0
@@ -410,8 +410,6 @@
                         \>
                         \(
                     }
-                    \revert TupletNumber.text
-                    \override TupletNumber.text = \markup \italic 17:16
                     \times 48/51
                     {
                         \set stemLeftBeamCount = 1
@@ -730,7 +728,6 @@
                         \tweak Accidental.transparent ##t
                         bf32
                     }
-                    \revert TupletNumber.text
                     \override TupletNumber.text = \markup \italic 9:8
                     \times 16/18
                     {
@@ -846,7 +843,7 @@
                         \(
                     }
                     \revert TupletNumber.text
-                    \override TupletNumber.text = \markup \italic 49:48
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 48/49
                     {
                         \set stemLeftBeamCount = 1
@@ -1151,8 +1148,6 @@
                         \tweak Accidental.transparent ##t
                         d'32
                     }
-                    \revert TupletNumber.text
-                    \override TupletNumber.text = \markup \italic 19:16
                     \times 16/19
                     {
                         \set stemLeftBeamCount = 1
@@ -1274,7 +1269,6 @@
                         \)
                         ]
                     }
-                    \revert TupletNumber.text
                     s1 * 2/5
                     s1 * 1/2
                     s1 * 5/7
@@ -1306,7 +1300,6 @@
                     g'''32.
                     \fp
                     - \tenuto
-                    ~
                     ]
                     g16
                     \ff
