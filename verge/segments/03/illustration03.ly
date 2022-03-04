@@ -426,13 +426,13 @@
                         \set suggestAccidentals = ##t
                         <
                             \tweak style #'harmonic-mixed
-                            g
+                            gqs
                             \tweak style #'harmonic-mixed
-                            d'
+                            dqs'
                             \tweak style #'harmonic-mixed
-                            a'
+                            aqs'
                             \tweak style #'harmonic-mixed
-                            e''
+                            eqs''
                         >4
                         \f
                         \glissando
@@ -518,13 +518,13 @@
                         \set stemRightBeamCount = 3
                         <
                             \tweak style #'harmonic-mixed
-                            g
+                            gqs
                             \tweak style #'harmonic-mixed
-                            d'
+                            dqs'
                             \tweak style #'harmonic-mixed
-                            a'
+                            aqs'
                             \tweak style #'harmonic-mixed
-                            e''
+                            eqs''
                         >32
                         \glissando
                         \set stemLeftBeamCount = 3
@@ -561,13 +561,13 @@
                     {
                         <
                             \tweak style #'harmonic-mixed
-                            g
+                            gqs
                             \tweak style #'harmonic-mixed
-                            d'
+                            dqs'
                             \tweak style #'harmonic-mixed
-                            a'
+                            aqs'
                             \tweak style #'harmonic-mixed
-                            e''
+                            eqs''
                         >4
                         \glissando
                         <
@@ -583,13 +583,13 @@
                         \glissando
                         <
                             \tweak style #'harmonic-mixed
-                            g
+                            gqs
                             \tweak style #'harmonic-mixed
-                            d'
+                            dqs'
                             \tweak style #'harmonic-mixed
-                            a'
+                            aqs'
                             \tweak style #'harmonic-mixed
-                            e''
+                            eqs''
                         >4
                         \glissando
                     }

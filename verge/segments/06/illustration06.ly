@@ -1899,13 +1899,13 @@
                     \set suggestAccidentals = ##t
                     <
                         \tweak style #'harmonic-mixed
-                        g
+                        gqs
                         \tweak style #'harmonic-mixed
-                        d'
+                        dqs'
                         \tweak style #'harmonic-mixed
-                        a'
+                        aqs'
                         \tweak style #'harmonic-mixed
-                        e''
+                        eqs''
                     >2.
                     \f
                     ~
@@ -1916,24 +1916,24 @@
                     \override NoteHead.no-ledgers = ##t
                     <
                         \tweak style #'harmonic-mixed
-                        g
+                        gqs
                         \tweak style #'harmonic-mixed
-                        d'
+                        dqs'
                         \tweak style #'harmonic-mixed
-                        a'
+                        aqs'
                         \tweak style #'harmonic-mixed
-                        e''
+                        eqs''
                     >2
                     ~
                     <
                         \tweak style #'harmonic-mixed
-                        g
+                        gqs
                         \tweak style #'harmonic-mixed
-                        d'
+                        dqs'
                         \tweak style #'harmonic-mixed
-                        a'
+                        aqs'
                         \tweak style #'harmonic-mixed
-                        e''
+                        eqs''
                     >4
                     \ottava 1
                     \revert Accidental.stencil
@@ -2043,13 +2043,13 @@
                     \undo \hide NoteHead
                     <
                         \tweak style #'harmonic-mixed
-                        g
+                        gqs
                         \tweak style #'harmonic-mixed
-                        d'
+                        dqs'
                         \tweak style #'harmonic-mixed
-                        a'
+                        aqs'
                         \tweak style #'harmonic-mixed
-                        e''
+                        eqs''
                     >8
                     \glissando
                     \hide NoteHead
@@ -2125,13 +2125,13 @@
                     \undo \hide NoteHead
                     <
                         \tweak style #'harmonic-mixed
-                        g
+                        gqs
                         \tweak style #'harmonic-mixed
-                        d'
+                        dqs'
                         \tweak style #'harmonic-mixed
-                        a'
+                        aqs'
                         \tweak style #'harmonic-mixed
-                        e''
+                        eqs''
                     >8
                     [
                     \glissando
@@ -2164,13 +2164,13 @@
                     \undo \hide NoteHead
                     <
                         \tweak style #'harmonic-mixed
-                        g
+                        gqs
                         \tweak style #'harmonic-mixed
-                        d'
+                        dqs'
                         \tweak style #'harmonic-mixed
-                        a'
+                        aqs'
                         \tweak style #'harmonic-mixed
-                        e''
+                        eqs''
                     >32
                     \glissando
                     \ottava 1

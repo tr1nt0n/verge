@@ -606,10 +606,10 @@ def pitch_naiads(voices, measures, selector, index):
         score["violin 2 voice"]: trinton.rotated_sequence(
             pitch_list=[
                 [
-                    -5,
-                    2,
-                    9,
-                    16,
+                    -4.5,
+                    2.5,
+                    9.5,
+                    16.5,
                 ],
                 [
                     30,
@@ -642,10 +642,10 @@ def pitch_naiads(voices, measures, selector, index):
                     51,
                 ],
                 [
-                    -5,
-                    2,
-                    9,
-                    16,
+                    -4.5,
+                    2.5,
+                    9.5,
+                    16.5,
                 ],
                 [
                     -1,
@@ -660,10 +660,10 @@ def pitch_naiads(voices, measures, selector, index):
                     51,
                 ],
                 [
-                    -5,
-                    2,
-                    9,
-                    16,
+                    -4.5,
+                    2.5,
+                    9.5,
+                    16.5,
                 ],
                 [
                     1,
