@@ -136,14 +136,6 @@ for met, leaf in zip(
     ],
 ):
     trinton.attach(voice=score["Global Context"], leaves=[leaf], attachment=met)
-#
-# trinton.attach(
-#     voice=score["Global Context"],
-#     leaves=[
-#         7,
-#     ],
-#     attachment=abjad.LilyPondLiteral(r"\break", format_slot="before"),
-# )
 
 trinton.populate_fermata_measures(
     score=score,
@@ -360,9 +352,11 @@ trinton.ottava(
     octave=1,
 )
 
-violin_2_measures = abjad.Selection(score["violin 2 voice"]).leaves().group_by_measure()
+violin_2_measures = abjad.select.group_by_measure(
+    abjad.select.leaves(score["violin 2 voice"])
+)
 
-for leaf in abjad.Selection(violin_2_measures[-2]).leaves(pitched=True).exclude([-1]):
+for leaf in abjad.select.exclude(argument=violin_2_measures[12], indices=[-1]):
     abjad.attach(abjad.Glissando(), leaf)
 
 trinton.ficta(
@@ -382,7 +376,7 @@ trinton.attach(
         26,
         30,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -390,7 +384,7 @@ trinton.attach(
     leaves=[
         29,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -398,7 +392,7 @@ trinton.attach(
     leaves=[
         14,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Crine" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Crine" 1', "after"),
 )
 
 trinton.attach(

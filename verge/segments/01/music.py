@@ -85,12 +85,12 @@ trinton.make_and_append_rhythm_selections(
                 ),
             ]
         ),
-        rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
         rmakers.rewrite_dots(),
-        rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        rmakers.beam(lambda _: abjad.select.tuplets(_)),
     ),
     durations=[
         (5, 4),
@@ -202,7 +202,7 @@ trinton.attach(
     leaves=[
         7,
     ],
-    attachment=abjad.LilyPondLiteral(r"\break", format_slot="before"),
+    attachment=abjad.LilyPondLiteral(r"\break", "before"),
 )
 
 trinton.populate_fermata_measures(
@@ -226,7 +226,7 @@ trinton.attach(
 
 for number, string in zip([0, 1], ["11:10", "23:20"]):
     abjad.override(
-        abjad.Selection(score["violin 2 voice"]).tuplet(number)
+        abjad.select.tuplet(score["violin 2 voice"], number)
     ).TupletNumber.text = abjad.Markup(rf"\markup \italic {string}")
 
 # meter rewriting and beaming
@@ -282,7 +282,7 @@ verge.pitch_arcana(
     index=0,
 )
 
-verge.octave_up([abjad.Selection(score["violin 3 voice"]).leaf(5)])
+verge.octave_up([abjad.select.leaf(score["violin 3 voice"], 5)])
 
 verge.pitch_earthen(
     voice=score["violin 2 voice"],
@@ -333,33 +333,33 @@ for number in list(range(0, 33)):
     if number % 2 == 1:
         abjad.attach(
             abjad.Articulation("upbow"),
-            abjad.Selection(score["violin 2 voice"]).leaf(number),
+            abjad.select.leaf(score["violin 2 voice"], number),
         )
 
     else:
         abjad.attach(
             abjad.Articulation("downbow"),
-            abjad.Selection(score["violin 2 voice"]).leaf(number),
+            abjad.select.leaf(score["violin 2 voice"], number),
         )
 
 trinton.attach(
     voice=score["violin 2 voice"],
     leaves=[0],
     attachment=abjad.LilyPondLiteral(
-        r'\boxed-markup "As full bows as possible" 1', format_slot="after"
+        r'\boxed-markup "As full bows as possible" 1', "after"
     ),
 )
 
 for start, stop in zip(
     [
-        abjad.Selection(score["violin 1 voice"]).leaf(4),
-        abjad.Selection(score["violin 2 voice"]).leaf(33),
-        abjad.Selection(score["violin 3 voice"]).leaf(4),
+        abjad.select.leaf(score["violin 1 voice"], 4),
+        abjad.select.leaf(score["violin 2 voice"], 33),
+        abjad.select.leaf(score["violin 3 voice"], 4),
     ],
     [
-        abjad.Selection(score["violin 1 voice"]).leaf(6),
-        abjad.Selection(score["violin 2 voice"]).leaf(35),
-        abjad.Selection(score["violin 3 voice"]).leaf(5),
+        abjad.select.leaf(score["violin 1 voice"], 6),
+        abjad.select.leaf(score["violin 2 voice"], 35),
+        abjad.select.leaf(score["violin 3 voice"], 5),
     ],
 ):
     trinton.dashed_slur(
@@ -385,7 +385,7 @@ verge.five_lines(
     ],
 )
 
-wrapping = abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', format_slot="after")
+wrapping = abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', "after")
 abjad.tweak(wrapping).padding = 5
 
 trinton.attach(
@@ -397,7 +397,7 @@ trinton.attach(
     attachment=wrapping,
 )
 
-ord = abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', format_slot="after")
+ord = abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', "after")
 abjad.tweak(ord).padding = 5
 
 trinton.attach(
@@ -414,7 +414,7 @@ trinton.attach(
     leaves=[
         37,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', "after"),
 )
 
 trinton.attach(
@@ -422,7 +422,7 @@ trinton.attach(
     leaves=[
         56,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "NB" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "NB" 1', "after"),
 )
 
 trinton.attach(

@@ -72,7 +72,7 @@ trinton.attach_multiple(
     attachments=[
         abjad.LilyPondLiteral(
             r"\once \override Score.BarLine.transparent = ##f",
-            format_slot="absolute_after",
+            "absolute_after",
         ),
         abjad.BarLine("|."),
     ],
@@ -145,9 +145,7 @@ trinton.attach(
     leaves=[
         0,
     ],
-    attachment=abjad.LilyPondLiteral(
-        r'\boxed-markup "NB, 1/2 CLT" 1', format_slot="after"
-    ),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "NB, 1/2 CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -158,7 +156,7 @@ trinton.attach(
         20,
         27,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -168,7 +166,7 @@ trinton.attach(
         18,
         21,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', "after"),
 )
 
 trinton.attach(

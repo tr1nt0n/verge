@@ -268,14 +268,6 @@ trinton.write_text_span(
     padding=3,
 )
 
-# trinton.attach(
-#     voice=score["Global Context"],
-#     leaves=[
-#         7,
-#     ],
-#     attachment=abjad.LilyPondLiteral(r"\break", format_slot="before"),
-# )
-
 trinton.populate_fermata_measures(
     score=score,
     voices=["Global Context", "violin 1 voice", "violin 2 voice", "violin 3 voice"],
@@ -335,7 +327,9 @@ trinton.beam_runs_by_selection(
 )
 
 sel = []
-violin_2_measures = abjad.Selection(score["violin 2 voice"]).leaves().group_by_measure()
+violin_2_measures = abjad.select.group_by_measure(
+    abjad.select.leaves(score["violin 2 voice"])
+)
 for number in [
     6,
     7,
@@ -349,7 +343,7 @@ for number in [
         sel.append(leaf)
 trinton.unbeam_quarters(sel)
 
-abjad.detach(abjad.StartBeam, abjad.Selection(score["violin 2 voice"]).leaf(54))
+abjad.detach(abjad.StartBeam, abjad.select.leaf(score["violin 2 voice"], 54))
 
 
 # pitching
@@ -485,7 +479,7 @@ verge.pitch_earthen(
 
 # attachments
 
-abjad.detach(abjad.Tie, abjad.Selection(score["violin 2 voice"]).leaf(4))
+abjad.detach(abjad.Tie, abjad.select.leaf(score["violin 2 voice"], 4))
 
 verge.five_lines(
     score=score,
@@ -757,7 +751,7 @@ trinton.attach(
     leaves=[
         0,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', "after"),
 )
 
 trinton.attach(
@@ -767,7 +761,7 @@ trinton.attach(
         63,
         92,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -776,7 +770,7 @@ trinton.attach(
         50,
         76,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -784,7 +778,7 @@ trinton.attach(
     leaves=[
         14,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Crine" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Crine" 1', "after"),
 )
 
 trinton.attach(
@@ -792,7 +786,7 @@ trinton.attach(
     leaves=[
         134,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', "after"),
 )
 
 trinton.write_hooked_spanner(

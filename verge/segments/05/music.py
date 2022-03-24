@@ -93,14 +93,6 @@ trinton.write_text_span(
     ],
     padding=3,
 )
-#
-# trinton.attach(
-#     voice=score["Global Context"],
-#     leaves=[
-#         7,
-#     ],
-#     attachment=abjad.LilyPondLiteral(r"\break", format_slot="before"),
-# )
 
 trinton.populate_fermata_measures(
     score=score,
@@ -224,7 +216,7 @@ trinton.attach_multiple(
     ],
     attachments=[
         abjad.Dynamic("p"),
-        abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', format_slot="after"),
+        abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', "after"),
     ],
 )
 
@@ -254,7 +246,7 @@ trinton.attach_multiple(
     ],
     attachments=[
         abjad.LilyPondLiteral(
-            r"\once \override Score.BarLine.transparent = ##f", format_slot="after"
+            r"\once \override Score.BarLine.transparent = ##f", "after"
         ),
     ],
 )

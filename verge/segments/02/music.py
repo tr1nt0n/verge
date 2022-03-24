@@ -177,15 +177,7 @@ for met, leaf in zip(
     ],
 ):
     trinton.attach(voice=score["Global Context"], leaves=[leaf], attachment=met)
-#
-# trinton.attach(
-#     voice=score["Global Context"],
-#     leaves=[
-#         7,
-#     ],
-#     attachment=abjad.LilyPondLiteral(r"\break", format_slot="before"),
-# )
-#
+
 trinton.populate_fermata_measures(
     score=score,
     voices=["Global Context", "violin 1 voice", "violin 2 voice", "violin 3 voice"],
@@ -326,24 +318,22 @@ verge.pitch_conjuring(
 
 # attachments
 
-# abjad.attach(abjad.StopBeam(), abjad.Selection(score["violin 3 voice"]).leaf(8))
-
 for start, stop in zip(
     [
-        abjad.Selection(score["violin 1 voice"]).leaf(0),
-        abjad.Selection(score["violin 2 voice"]).leaf(0),
-        abjad.Selection(score["violin 3 voice"]).leaf(0),
-        abjad.Selection(score["violin 1 voice"]).leaf(11),
-        abjad.Selection(score["violin 2 voice"]).leaf(11),
-        abjad.Selection(score["violin 3 voice"]).leaf(11),
+        abjad.select.leaf(score["violin 1 voice"], 0),
+        abjad.select.leaf(score["violin 2 voice"], 0),
+        abjad.select.leaf(score["violin 3 voice"], 0),
+        abjad.select.leaf(score["violin 1 voice"], 11),
+        abjad.select.leaf(score["violin 2 voice"], 11),
+        abjad.select.leaf(score["violin 3 voice"], 11),
     ],
     [
-        abjad.Selection(score["violin 1 voice"]).leaf(5),
-        abjad.Selection(score["violin 2 voice"]).leaf(6),
-        abjad.Selection(score["violin 3 voice"]).leaf(5),
-        abjad.Selection(score["violin 1 voice"]).leaf(15),
-        abjad.Selection(score["violin 2 voice"]).leaf(14),
-        abjad.Selection(score["violin 3 voice"]).leaf(16),
+        abjad.select.leaf(score["violin 1 voice"], 5),
+        abjad.select.leaf(score["violin 2 voice"], 6),
+        abjad.select.leaf(score["violin 3 voice"], 5),
+        abjad.select.leaf(score["violin 1 voice"], 15),
+        abjad.select.leaf(score["violin 2 voice"], 14),
+        abjad.select.leaf(score["violin 3 voice"], 16),
     ],
 ):
     trinton.dashed_slur(
@@ -352,11 +342,11 @@ for start, stop in zip(
     )
 #
 for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
-    measures = abjad.Selection(score[voice_name]).leaves().group_by_measure()
+    measures = abjad.select.group_by_measure(abjad.select.leaves(score[voice_name]))
     for number in [2, 6]:
         current_measure = measures[number]
-        for leaf in abjad.Selection(current_measure).leaves(pitched=True):
-            for tie in abjad.Selection(leaf).logical_ties():
+        for leaf in abjad.select.leaves(current_measure, pitched=True):
+            for tie in abjad.select.logical_ties(leaf):
                 abjad.attach(abjad.Articulation("staccato"), tie[0])
                 abjad.attach(abjad.Articulation("marcato"), tie[0])
     sel = []
@@ -374,21 +364,21 @@ for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
             sel.append(leaf)
     trinton.unbeam_quarters(sel)
 
-abjad.detach(abjad.StartBeam, abjad.Selection(score["violin 2 voice"]).leaf(3))
-abjad.attach(abjad.StartBeam(), abjad.Selection(score["violin 2 voice"]).leaf(0))
+abjad.detach(abjad.StartBeam, abjad.select.leaf(score["violin 2 voice"], 3))
+abjad.attach(abjad.StartBeam(), abjad.select.leaf(score["violin 3 voice"], 0))
 
 
 for voice_name in ["violin 2 voice", "violin 3 voice"]:
-    measures = abjad.Selection(score[voice_name]).leaves().group_by_measure()
-    for leaf in abjad.Selection(measures[3]).leaves(pitched=True):
-        for tie in abjad.Selection(leaf).logical_ties():
+    measures = abjad.select.group_by_measure(abjad.select.leaves(score[voice_name]))
+    for leaf in abjad.select.leaves(measures[3], pitched=True):
+        for tie in abjad.select.logical_ties(leaf):
             abjad.attach(abjad.Articulation("staccato"), tie[0])
             abjad.attach(abjad.Articulation("marcato"), tie[0])
 
 for voice_name in ["violin 1 voice", "violin 3 voice"]:
-    measures = abjad.Selection(score[voice_name]).leaves().group_by_measure()
-    for leaf in abjad.Selection(measures[5]).leaves(pitched=True):
-        for tie in abjad.Selection(leaf).logical_ties():
+    measures = abjad.select.group_by_measure(abjad.select.leaves(score[voice_name]))
+    for leaf in abjad.select.leaves(measures[5], pitched=True):
+        for tie in abjad.select.logical_ties(leaf):
             abjad.attach(abjad.Articulation("staccato"), tie[0])
             abjad.attach(abjad.Articulation("marcato"), tie[0])
 

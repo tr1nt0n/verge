@@ -260,15 +260,7 @@ for met, leaf in zip(
     ],
 ):
     trinton.attach(voice=score["Global Context"], leaves=[leaf], attachment=met)
-#
-# trinton.attach(
-#     voice=score["Global Context"],
-#     leaves=[
-#         7,
-#     ],
-#     attachment=abjad.LilyPondLiteral(r"\break", format_slot="before"),
-# )
-#
+
 trinton.populate_fermata_measures(
     score=score,
     voices=["Global Context", "violin 1 voice", "violin 2 voice", "violin 3 voice"],
@@ -345,20 +337,16 @@ for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
         9,
     ]:
         trinton.unbeam_quarters(
-            abjad.Selection(score[voice_name]).leaves().group_by_measure()[number]
+            abjad.select.group_by_measure(abjad.select.leaves(score[voice_name]))[
+                number
+            ]
         )
 
-abjad.detach(abjad.StartBeam, abjad.Selection(score["violin 1 voice"]).leaf(16))
+abjad.detach(abjad.StartBeam, abjad.select.leaf(score["violin 1 voice"], 16))
 
-abjad.attach(abjad.StartBeam(), abjad.Selection(score["violin 1 voice"]).leaf(10))
+abjad.attach(abjad.StartBeam(), abjad.select.leaf(score["violin 1 voice"], 10))
 
-verge.octave_down(
-    [
-        abjad.Selection(score["violin 2 voice"]).leaf(
-            2,
-        )
-    ]
-)
+verge.octave_down([abjad.select.leaf(score["violin 2 voice"], 2)])
 
 verge.pitch_stirring(
     voice=score["violin 2 voice"],
@@ -436,14 +424,14 @@ for voice_name, index in zip(
 
 for start, stop in zip(
     [
-        abjad.Selection(score["violin 1 voice"]).leaf(0),
-        abjad.Selection(score["violin 2 voice"]).leaf(0),
-        abjad.Selection(score["violin 3 voice"]).leaf(0),
+        abjad.select.leaf(score["violin 1 voice"], 0),
+        abjad.select.leaf(score["violin 2 voice"], 0),
+        abjad.select.leaf(score["violin 3 voice"], 0),
     ],
     [
-        abjad.Selection(score["violin 1 voice"]).leaf(2),
-        abjad.Selection(score["violin 2 voice"]).leaf(2),
-        abjad.Selection(score["violin 3 voice"]).leaf(2),
+        abjad.select.leaf(score["violin 1 voice"], 2),
+        abjad.select.leaf(score["violin 2 voice"], 2),
+        abjad.select.leaf(score["violin 3 voice"], 2),
     ],
 ):
     trinton.dashed_slur(
@@ -468,7 +456,7 @@ trinton.attach(
         12,
         19,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -478,7 +466,7 @@ trinton.attach(
         14,
         28,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "1/2 CLT" 1', "after"),
 )
 
 trinton.attach(
@@ -486,7 +474,7 @@ trinton.attach(
     leaves=[
         10,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Crine" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Crine" 1', "after"),
 )
 
 trinton.attach(
@@ -495,9 +483,7 @@ trinton.attach(
         41,
         44,
     ],
-    attachment=abjad.LilyPondLiteral(
-        r'\boxed-markup "DP, wrapping" 1', format_slot="after"
-    ),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', "after"),
 )
 
 trinton.attach(
@@ -505,7 +491,7 @@ trinton.attach(
     leaves=[
         43,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "XSB" 1', "after"),
 )
 
 trinton.attach(
@@ -513,9 +499,7 @@ trinton.attach(
     leaves=[
         48,
     ],
-    attachment=abjad.LilyPondLiteral(
-        r'\boxed-markup "NB, Ord." 1', format_slot="after"
-    ),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "NB, Ord." 1', "after"),
 )
 
 trinton.attach(
@@ -523,7 +507,7 @@ trinton.attach(
     leaves=[
         45,
     ],
-    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', format_slot="after"),
+    attachment=abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', "after"),
 )
 
 trinton.glissando(
@@ -543,9 +527,11 @@ trinton.glissando(
     ],
 )
 
-violin_2_measures = abjad.Selection(score["violin 2 voice"]).leaves().group_by_measure()
+violin_2_measures = abjad.select.group_by_measure(
+    abjad.select(score["violin 2 voice"]).leaves()
+)
 
-for leaf in abjad.Selection(violin_2_measures[6]).leaves().exclude([-1]):
+for leaf in abjad.select.exclude(abjad.select.leaves(violin_2_measures[6]), [-1]):
     abjad.attach(
         abjad.Glissando(),
         leaf,

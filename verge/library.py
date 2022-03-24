@@ -149,12 +149,12 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
         stack = rmakers.stack(
             rmakers.tuplet(_voice_to_prolation[voice_name]),
             rmakers.force_rest(rest_selector),
-            rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+            rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+            rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+            rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
             rmakers.rewrite_dots(),
-            # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            # rmakers.beam(lambda _: abjad.select.tuplets(_)),
             rmakers.beam_groups(beam_rests=True),
         )
 
@@ -168,12 +168,12 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
     else:
         stack = rmakers.stack(
             rmakers.tuplet(_voice_to_prolation[voice_name]),
-            rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+            rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+            rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+            rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
             rmakers.rewrite_dots(),
-            # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+            # rmakers.beam(lambda _: abjad.select.tuplets(_)),
             rmakers.beam_groups(beam_rests=True),
         )
 
@@ -191,23 +191,23 @@ def naiads_ii_rhythms(
 
     stack1 = rmakers.stack(
         rmakers.even_division([division], extra_counts=extra_counts),
-        rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
         rmakers.rewrite_dots(),
-        # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        # rmakers.beam(lambda _: abjad.select.tuplets(_)),
         rmakers.beam_groups(beam_rests=True),
     )
 
     stack2 = rmakers.stack(
         rmakers.tuplet(tuplets),
-        rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
-        rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
         rmakers.rewrite_dots(),
-        # rmakers.beam(lambda _: abjad.Selection(_).tuplets()),
+        # rmakers.beam(lambda _: abjad.select.tuplets(_)),
         rmakers.beam_groups(beam_rests=True),
     )
 
@@ -237,10 +237,10 @@ def stirring_rhythms(score, voice_name, durations, divisions, index):
                 ),
                 division,
             ),
-            rmakers.trivialize(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.extract_trivial(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.rewrite_rest_filled(lambda _: abjad.Selection(_).tuplets()),
-            rmakers.rewrite_sustained(lambda _: abjad.Selection(_).tuplets()),
+            rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+            rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+            rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+            rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
             rmakers.rewrite_dots(),
         )
 
@@ -389,7 +389,7 @@ def pitch_conjuring(voice, measures, selector, index):
 
     for measure in measures:
 
-        grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+        grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
         current_measure = grouped_measures[measure - 1]
 
@@ -399,7 +399,7 @@ def pitch_conjuring(voice, measures, selector, index):
 
     for measure in measures:
 
-        grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+        grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
         current_measure = grouped_measures[measure - 1]
 
@@ -427,16 +427,13 @@ def pitch_arcana(voices, measures, selector, index):
 
         for voice in voices:
 
-            grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+            grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
             current_measure = grouped_measures[measure - 1]
 
-            top_level_components = trinton.get_top_level_components_from_leaves(
-                current_measure
-            )
-
-            for tuplet in abjad.Selection(top_level_components).tuplets():
-                for rest_group in abjad.Selection(tuplet).rests().group_by_contiguity():
+            for tuplet in abjad.select.tuplets(voice):
+                rests = abjad.select.rests(tuplet)
+                for rest_group in abjad.select.group_by_contiguity(rests):
                     abjad.mutate.fuse(rest_group)
 
             selections = selector(current_measure)
@@ -526,7 +523,7 @@ def pitch_earthen(voice, measures, selector, string, seed, index):
     )
 
     for measure in measures:
-        grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+        grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
         current_measure = grouped_measures[measure - 1]
 
@@ -536,7 +533,7 @@ def pitch_earthen(voice, measures, selector, string, seed, index):
 
     if string != "wrapping":
         for measure in measures:
-            grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+            grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
             current_measure = grouped_measures[measure - 1]
 
@@ -544,12 +541,12 @@ def pitch_earthen(voice, measures, selector, string, seed, index):
 
             for leaf in selections:
                 abjad.tweak(leaf.note_head).style = r"#'triangle"
-            for tie in abjad.Selection(selections).logical_ties():
+            for tie in abjad.select.logical_ties(selections):
                 abjad.attach(abjad.Articulation("tenuto"), tie[0])
 
     else:
         for measure in measures:
-            grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+            grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
             current_measure = grouped_measures[measure - 1]
 
@@ -557,7 +554,7 @@ def pitch_earthen(voice, measures, selector, string, seed, index):
 
             for leaf in selections:
                 abjad.tweak(leaf.note_head).Accidental.transparent = True
-            for tie in abjad.Selection(selections).logical_ties():
+            for tie in abjad.select.logical_ties(selections):
                 abjad.attach(abjad.Articulation("marcato"), tie[0])
 
 
@@ -686,7 +683,7 @@ def pitch_naiads(voices, measures, selector, index):
 
         for measure in measures:
 
-            grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+            grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
             current_measure = grouped_measures[measure - 1]
 
@@ -696,7 +693,9 @@ def pitch_naiads(voices, measures, selector, index):
 
         if voice == score["violin 1 voice"]:
             for measure in measures:
-                grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+                grouped_measures = abjad.select.group_by_measure(
+                    abjad.select.leaves(voice)
+                )
 
                 current_measure = grouped_measures[measure - 1]
 
@@ -710,7 +709,9 @@ def pitch_naiads(voices, measures, selector, index):
 
         elif voice == score["violin 2 voice"]:
             for measure in measures:
-                grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+                grouped_measures = abjad.select.group_by_measure(
+                    abjad.select.leaves(voice)
+                )
 
                 current_measure = grouped_measures[measure - 1]
 
@@ -804,7 +805,7 @@ def pitch_stirring(voice, measures, selector, string, index):
 
     for measure in measures:
 
-        grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+        grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
         current_measure = grouped_measures[measure - 1]
 
@@ -814,22 +815,14 @@ def pitch_stirring(voice, measures, selector, string, index):
 
     for measure in measures:
 
-        grouped_measures = abjad.Selection(voice).leaves().group_by_measure()
+        grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
 
         current_measure = grouped_measures[measure - 1]
 
         selections = selector(current_measure)
 
-        for leaf in abjad.Selection(selections).leaves():
-            if leaf.written_pitch == -5:
-                abjad.tweak(leaf.note_head).style = r"#'cross"
-            elif leaf.written_pitch == 2:
-                abjad.tweak(leaf.note_head).style = r"#'cross"
-            elif leaf.written_pitch == 9:
-                abjad.tweak(leaf.note_head).style = r"#'cross"
-            elif leaf.written_pitch == 16:
-                abjad.tweak(leaf.note_head).style = r"#'cross"
-            elif leaf.written_duration == abjad.Duration(1, 8):
+        for leaf in selections:
+            if leaf.written_duration == abjad.Duration(1, 8):
                 abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
             elif leaf.written_duration == abjad.Duration(1, 16):
                 abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
@@ -838,9 +831,19 @@ def pitch_stirring(voice, measures, selector, string, index):
             else:
                 abjad.tweak(leaf.note_head).style = r"#'cross"
 
-        for tie in abjad.Selection(selections).logical_ties():
+        for leaf in selections:
+            if leaf.written_pitch == abjad.NamedPitch("g"):
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+            elif leaf.written_pitch == abjad.NamedPitch("d'"):
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+            elif leaf.written_pitch == abjad.NamedPitch("a'"):
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+            elif leaf.written_pitch == abjad.NamedPitch("e''"):
+                abjad.tweak(leaf.note_head).style = r"#'cross"
+
+        for tie in abjad.select.logical_ties(selections):
             abjad.attach(
-                abjad.LilyPondLiteral(r"- \baca-circle-markup", format_slot="after"),
+                abjad.LilyPondLiteral(r"- \baca-circle-markup", "after"),
                 tie[0],
             )
 
@@ -875,9 +878,9 @@ def blank_time_signature(global_context=score["Global Context"], measures="all")
     abjad.attach(
         abjad.LilyPondLiteral(
             r"\once \override Score.TimeSignature.stencil = #(blank-time-signature)",
-            format_slot="before",
+            "before",
         ),
-        abjad.Selection(global_context).leaf(measures[0]),
+        abjad.select.leaf(global_context, measures[0]),
     )
     for string in [
         r"\once \override Score.BarLine.stencil = ##f",
@@ -890,7 +893,7 @@ def blank_time_signature(global_context=score["Global Context"], measures="all")
                 leaves=[measure],
                 attachment=abjad.LilyPondLiteral(
                     string,
-                    format_slot="before",
+                    "before",
                 ),
             )
 
@@ -903,7 +906,7 @@ def four_lines(score, voice, leaves):
         attachments=[
             abjad.LilyPondLiteral(
                 r"\staff-line-count 4",
-                format_slot="absolute_before",
+                "absolute_before",
             ),
             abjad.Clef("percussion"),
         ],
@@ -918,7 +921,7 @@ def five_lines(score, voice, leaves):
         attachments=[
             abjad.LilyPondLiteral(
                 r"\staff-line-count 5",
-                format_slot="absolute_before",
+                "absolute_before",
             ),
             abjad.Clef("treble"),
         ],
@@ -931,11 +934,11 @@ def five_lines(score, voice, leaves):
 def subharmonic_selector():
     def selector(argument):
         out = []
-        ties = abjad.Selection(argument).logical_ties()
+        ties = abjad.select.logical_ties(argument)
         for tie in ties:
             if tie.written_duration > abjad.Duration(1, 8):
                 out.append(tie)
-        return abjad.Selection(out[:]).leaves(pitched=True)
+        return abjad.select.leaves(out[:], pitched=True)
 
     return selector
 
@@ -943,10 +946,10 @@ def subharmonic_selector():
 def wrapping_selector(duration=abjad.Duration(1, 8)):
     def selector(argument):
         out = []
-        ties = abjad.Selection(argument).logical_ties()
+        ties = abjad.select.logical_ties(argument)
         for tie in ties:
             if tie.written_duration <= duration:
                 out.append(tie)
-        return abjad.Selection(out[:]).leaves(pitched=True)
+        return abjad.select.leaves(out[:], pitched=True)
 
     return selector
