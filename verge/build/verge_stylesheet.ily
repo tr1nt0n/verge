@@ -1,7 +1,7 @@
 \version "2.20.0"
 \language english
 #(set-default-paper-size "arch a")
-#(set-global-staff-size 9.5)
+#(set-global-staff-size 12)
 #(ly:set-option 'relative-includes #t)
 
 \include "../library.ily"
@@ -50,7 +50,7 @@
 
         \override BarLine.hair-thickness = 0.5
         \override BarLine.transparent = ##t
-        \override BarLine.X-extent = #'(0 . 0)
+        % \override BarLine.X-extent = #'(0 . 0)
         \override BarLine.thick-thickness = #8
         \override BarLine.bar-extent = #'(-2 . 2)
 
@@ -131,6 +131,7 @@
 }
 %
 \paper {
+    system-separator-markup = \markup { \slashSeparator }
     system-system-spacing = #'((basic-distance . 12) (minimum-distance . 12) (padding . 12))
     indent = 20\mm
     short-indent = 15\mm

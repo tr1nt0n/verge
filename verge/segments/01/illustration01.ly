@@ -1,3 +1,9 @@
+\version "2.20.0"
+\language "english"
+\include "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily"
+\include "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily"
+\score
+{
     \context Score = "Score"
     <<
         \context TimeSignatureContext = "Global Context"
@@ -351,3 +357,4 @@
             }
         >>
     >>
+}

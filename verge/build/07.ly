@@ -292,7 +292,6 @@
                         \tweak Accidental.text \markup { \sharp-two-syntonic-comma-down  }
                         gs'2.
                         \mp
-                        ^ \markup \center-align { -29 }
                         \<
                     }
                     \tweak edge-height #'(0.7 . 0)
@@ -301,13 +300,11 @@
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup \concat { \one-septimal-comma-down \hspace #0.125 \natural-one-syntonic-comma-up  }
                         f''2
-                        ^ \markup \center-align { -14 }
                         \(
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup { \sharp-two-syntonic-comma-down  }
                     bs'4
-                    ^ \markup \center-align { -25 }
                     \)
                     \tweak edge-height #'(0.7 . 0)
                     \times 2/3
@@ -315,7 +312,6 @@
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \one-septimal-comma-down  }
                         f'2
-                        ^ \markup \center-align { -31 }
                     }
                     <g g'>1.
                     ~
@@ -723,13 +719,11 @@
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \natural-one-syntonic-comma-down  }
                         b2
-                        ^ \markup \center-align { -14 }
                         \(
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup { \natural-one-syntonic-comma-up  }
                     g'4
-                    ^ \markup \center-align { +18 }
                     \)
                     \tweak edge-height #'(0.7 . 0)
                     \times 4/5
@@ -737,7 +731,6 @@
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \sharp-one-syntonic-comma-down  }
                         ds'2
-                        ^ \markup \center-align { -10 }
                     }
                     \tweak edge-height #'(0.7 . 0)
                     \times 4/7
@@ -745,7 +738,6 @@
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \abjad-natural  }
                         g2.
-                        ^ \markup \center-align { +0 }
                     }
                     s1 * 9/4
                     s1 * 9/4

@@ -227,7 +227,7 @@ trinton.attach(
 for number, string in zip([0, 1], ["11:10", "23:20"]):
     abjad.override(
         abjad.select.tuplet(score["violin 2 voice"], number)
-    ).TupletNumber.text = abjad.Markup(rf"\markup \italic {string}")
+    ).TupletNumber.text = rf"\markup \italic {string}"
 
 # meter rewriting and beaming
 
@@ -531,6 +531,8 @@ trinton.write_hooked_spanner(
     ],
     padding=12,
 )
+
+trinton.make_sc_file(score=score, tempo=((1, 4), 77), current_directory="/Users/trintonprater/scores/verge/verge/segments/01")
 
 # render file
 

@@ -132,11 +132,11 @@ for number in [
 ]:
     abjad.override(
         abjad.select.tuplet(score["violin 3 voice"], number)
-    ).TupletNumber.text = abjad.Markup(r"\markup \italic { 7:10 }")
+    ).TupletNumber.text = r"\markup \italic { 7:10 }"
 
 abjad.override(
     abjad.select.tuplet(score["violin 1 voice"], 5)
-).TupletNumber.text = abjad.Markup(r"\markup \italic { 6:5 }")
+).TupletNumber.text = r"\markup \italic { 6:5 }"
 
 trinton.handwrite(
     score=score,
@@ -287,7 +287,7 @@ trinton.make_and_append_rhythm_selections(
 for number, string in zip([8, 9], ["11:10", "23:20"]):
     abjad.override(
         abjad.select.tuplet(score["violin 2 voice"], number)
-    ).TupletNumber.text = abjad.Markup(rf"\markup \italic {string}")
+    ).TupletNumber.text = rf"\markup \italic {string}"
 
 trinton.append_rests(score=score, voice="violin 2 voice", rests=[abjad.Rest("r2")])
 
@@ -637,8 +637,8 @@ for n in [
     )
 
 abjad.override(
-    abjad.select(score["violin 2 voice"]).leaf(84)
-).Beam.grow_direction = abjad.Right
+    abjad.select.leaf(score["violin 2 voice"], 84)
+).Beam.grow_direction = abjad.RIGHT
 
 # attachments
 
@@ -882,7 +882,8 @@ trinton.attach(
         6,
         10,
     ],
-    attachment=abjad.StartHairpin("o<|", direction=abjad.Up),
+    attachment=abjad.StartHairpin("o<|"),
+    direction=abjad.UP
 )
 
 trinton.attach(
@@ -891,7 +892,8 @@ trinton.attach(
         8,
         14,
     ],
-    attachment=abjad.Dynamic("f", direction=abjad.Up),
+    attachment=abjad.Dynamic("f"),
+    direction=abjad.UP
 )
 
 trinton.attach_multiple(
@@ -912,6 +914,8 @@ trinton.attach(
     ],
     attachment=abjad.Dynamic("ffff"),
 )
+
+trinton.make_sc_file(score=score, tempo=((1, 4), 69), current_directory="/Users/trintonprater/scores/verge/verge/segments/07")
 
 # render file
 
