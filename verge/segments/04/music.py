@@ -214,7 +214,7 @@ verge.pitch_arcana(
         6,
         7,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=37,
 )
 
@@ -271,7 +271,7 @@ verge.pitch_stirring(
         11,
         12,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     string="III",
     index=10,
 )
@@ -282,7 +282,7 @@ verge.pitch_naiads(
         score["violin 2 voice"],
     ],
     measures=[-1],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=13,
 )
 
@@ -473,6 +473,6 @@ trinton.render_file(
     segment_name="04",
     includes=[
         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+        "/Users/trintonprater/abjad/abjad/scm/abjad.ily",
     ],
 )

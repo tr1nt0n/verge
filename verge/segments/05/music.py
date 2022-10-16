@@ -140,7 +140,7 @@ verge.pitch_arcana(
         2,
         3,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=51,
 )
 
@@ -170,7 +170,7 @@ verge.pitch_earthen(
     measures=[
         4,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     string="wrapping",
     seed=1,
     index=21,
@@ -260,6 +260,6 @@ trinton.render_file(
     segment_name="05",
     includes=[
         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+        "/Users/trintonprater/abjad/abjad/scm/abjad.ily",
     ],
 )

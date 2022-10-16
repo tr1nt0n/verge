@@ -200,87 +200,167 @@ for voice_name in ["violin 1 voice", "violin 3 voice"]:
         ],
     )
 
+# trinton.make_and_append_rhythm_selections(
+#     score=score,
+#     voice_name="violin 2 voice",
+#     stack=rmakers.stack(
+#         rmakers.tuplet(
+#             [
+#                 (
+#                     1,
+#                     1,
+#                     1,
+#                     2,
+#                     2,
+#                     1,
+#                     1,
+#                     1,
+#                     2,
+#                     2,
+#                     1,
+#                     1,
+#                     2,
+#                     1,
+#                     1,
+#                     2,
+#                 ),
+#                 (
+#                     1,
+#                     2,
+#                     1,
+#                     1,
+#                     2,
+#                     1,
+#                     1,
+#                     2,
+#                     2,
+#                     1,
+#                     1,
+#                     1,
+#                     2,
+#                     2,
+#                     1,
+#                     1,
+#                     1,
+#                 ),
+#                 (
+#                     1,
+#                     2,
+#                     1,
+#                     1,
+#                     2,
+#                     1,
+#                     1,
+#                     2,
+#                     2,
+#                     1,
+#                 ),
+#                 (
+#                     1,
+#                     1,
+#                     1,
+#                     2,
+#                     2,
+#                     1,
+#                     1,
+#                     1,
+#                     2,
+#                     2,
+#                 ),
+#             ]
+#         ),
+#         rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+#         rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+#         rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+#         rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
+#         rmakers.rewrite_dots(),
+#         rmakers.beam(lambda _: abjad.select.tuplets(_)),
+#     ),
+#     durations=[
+#         (5, 4),
+#         (5, 4),
+#         (4, 4),
+#         (3, 4),
+#     ],
+# )
+
 trinton.make_and_append_rhythm_selections(
     score=score,
     voice_name="violin 2 voice",
-    stack=rmakers.stack(
-        rmakers.tuplet(
-            [
-                (
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                ),
-                (
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    1,
-                ),
-                (
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                ),
-                (
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                ),
-            ]
-        ),
-        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_dots(),
-        rmakers.beam(lambda _: abjad.select.tuplets(_)),
+    rmaker=rmakers.tuplet(
+        [
+            (5, 4),
+            (5, 4),
+            (4, 4),
+            (3, 4),
+        ],
+        [
+            (
+                1,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                2,
+                1,
+                1,
+                2,
+            ),
+            (
+                1,
+                2,
+                1,
+                1,
+                2,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                1,
+            ),
+            (
+                1,
+                2,
+                1,
+                1,
+                2,
+                1,
+                1,
+                2,
+                2,
+                1,
+            ),
+            (
+                1,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                1,
+                2,
+                2,
+            ),
+        ],
     ),
-    durations=[
-        (5, 4),
-        (5, 4),
-        (4, 4),
-        (3, 4),
+    rmaker_commands=[
+        trinton.treat_tuplets(),
+        rmakers.beam,
     ],
 )
 
@@ -291,20 +371,31 @@ for number, string in zip([8, 9], ["11:10", "23:20"]):
 
 trinton.append_rests(score=score, voice="violin 2 voice", rests=[abjad.Rest("r2")])
 
+# trinton.make_and_append_rhythm_selections(
+#     score=score,
+#     voice_name="violin 2 voice",
+#     stack=rmakers.stack(
+#         rmakers.accelerando([(1, 8), (1, 20), (1, 32)]),
+#         rmakers.beam(),
+#         rmakers.duration_bracket(),
+#         rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
+#         rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
+#         rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
+#         rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
+#     ),
+#     durations=[
+#         (5, 2),
+#     ],
+# )
+
 trinton.make_and_append_rhythm_selections(
     score=score,
     voice_name="violin 2 voice",
-    stack=rmakers.stack(
-        rmakers.accelerando([(1, 8), (1, 20), (1, 32)]),
-        rmakers.beam(),
-        rmakers.duration_bracket(),
-        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-    ),
-    durations=[
-        (5, 2),
+    rmaker=rmakers.accelerando([(5, 2)], [(1, 8), (1, 20), (1, 32)]),
+    rmaker_commands=[
+        rmakers.beam,
+        rmakers.duration_bracket,
+        trinton.treat_tuplets(),
     ],
 )
 
@@ -418,7 +509,7 @@ verge.pitch_arcana(
         4,
         5,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=0,
 )
 
@@ -547,7 +638,7 @@ for voice_name in ["violin 2 voice", "violin 3 voice"]:
             8,
             9,
         ],
-        selector=baca.selectors.pleaves(),
+        selector=trinton.pleaves(),
         index=20,
     )
 
@@ -883,7 +974,7 @@ trinton.attach(
         10,
     ],
     attachment=abjad.StartHairpin("o<|"),
-    direction=abjad.UP
+    direction=abjad.UP,
 )
 
 trinton.attach(
@@ -893,7 +984,7 @@ trinton.attach(
         14,
     ],
     attachment=abjad.Dynamic("f"),
-    direction=abjad.UP
+    direction=abjad.UP,
 )
 
 trinton.attach_multiple(
@@ -915,7 +1006,7 @@ trinton.attach(
     attachment=abjad.Dynamic("ffff"),
 )
 
-trinton.make_sc_file(score=score, tempo=((1, 4), 69), current_directory="/Users/trintonprater/scores/verge/verge/segments/07")
+# trinton.make_sc_file(score=score, tempo=((1, 4), 69), current_directory="/Users/trintonprater/scores/verge/verge/segments/07")
 
 # render file
 
@@ -926,6 +1017,6 @@ trinton.render_file(
     segment_name="07",
     includes=[
         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+        "/Users/trintonprater/abjad/abjad/scm/abjad.ily",
     ],
 )

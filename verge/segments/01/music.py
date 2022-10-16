@@ -43,59 +43,52 @@ verge.blank_time_signature(
 trinton.make_and_append_rhythm_selections(
     score=score,
     voice_name="violin 2 voice",
-    stack=rmakers.stack(
-        rmakers.tuplet(
-            [
-                (
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                ),
-                (
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    1,
-                    2,
-                    2,
-                    1,
-                    1,
-                    1,
-                ),
-            ]
-        ),
-        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_dots(),
-        rmakers.beam(lambda _: abjad.select.tuplets(_)),
+    rmaker=rmakers.tuplet(
+        [
+            (5, 4),
+            (5, 4),
+        ],
+        [
+            (
+                1,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                2,
+                1,
+                1,
+                2,
+            ),
+            (
+                1,
+                2,
+                1,
+                1,
+                2,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                1,
+                2,
+                2,
+                1,
+                1,
+                1,
+            ),
+        ],
     ),
-    durations=[
-        (5, 4),
-        (5, 4),
-    ],
+    rmaker_commands=[trinton.treat_tuplets(), rmakers.beam],
 )
 
 for voice_name in ["violin 1 voice", "violin 3 voice"]:
@@ -278,7 +271,7 @@ verge.pitch_arcana(
     measures=[
         3,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=0,
 )
 
@@ -316,14 +309,14 @@ verge.pitch_conjuring(
         8,
         9,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=0,
 )
 
 verge.pitch_conjuring(
     voice=score["violin 3 voice"],
     measures=[7, 8, 9, 10],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=0,
 )
 
@@ -386,7 +379,7 @@ verge.five_lines(
 )
 
 wrapping = abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', "after")
-abjad.tweak(wrapping).padding = 5
+bundle = abjad.bundle(wrapping, r"- \tweak padding #6")
 
 trinton.attach(
     voice=score["violin 2 voice"],
@@ -394,11 +387,11 @@ trinton.attach(
         40,
         48,
     ],
-    attachment=wrapping,
+    attachment=bundle,
 )
 
 ord = abjad.LilyPondLiteral(r'\boxed-markup "Ord." 1', "after")
-abjad.tweak(ord).padding = 5
+bundle = abjad.bundle(ord, r"- \tweak padding #6")
 
 trinton.attach(
     voice=score["violin 2 voice"],
@@ -406,7 +399,7 @@ trinton.attach(
         42,
         55,
     ],
-    attachment=ord,
+    attachment=bundle,
 )
 
 trinton.attach(
@@ -505,7 +498,7 @@ trinton.write_hooked_spanner(
     stop_leaf=[
         48,
     ],
-    padding=15.5,
+    padding=16,
 )
 
 trinton.write_hooked_spanner(
@@ -532,7 +525,7 @@ trinton.write_hooked_spanner(
     padding=12,
 )
 
-trinton.make_sc_file(score=score, tempo=((1, 4), 77), current_directory="/Users/trintonprater/scores/verge/verge/segments/01")
+# trinton.make_sc_file(score=score, tempo=((1, 4), 77), current_directory="/Users/trintonprater/scores/verge/verge/segments/01")
 
 # render file
 
@@ -543,6 +536,6 @@ trinton.render_file(
     segment_name="01",
     includes=[
         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+        "/Users/trintonprater/abjad/abjad/scm/abjad.ily",
     ],
 )

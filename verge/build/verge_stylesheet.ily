@@ -6,8 +6,8 @@
 
 \include "../library.ily"
 \include "/Users/trintonprater/evans/lilypond/evans-markups.ily"
-\include "/Users/trintonprater/abjad/abjad/_stylesheets/ekmelos-ji-accidental-markups.ily"
-\include "/Users/trintonprater/baca/lilypond/baca-circle-bow-markups.ily"
+\include "/Users/trintonprater/abjad-ext-microtones/abjadext/microtones/lilypond/ekmelos-ji-accidental-markups.ily"
+\include "/Users/trintonprater/baca/baca/scm/baca-circle-bow-markups.ily"
 
 \header {
     dedication = \markup \override #'(font-name . "Bodoni72") \fontsize #3 \center-column {"to Irvine Arditti" \fontsize #0.25 \with-color #white "."}
@@ -17,7 +17,7 @@
 }
 
 \layout {
-    \accidentalStyle dodecaphonic
+    \accidentalStyle neo-modern
     ragged-bottom = ##t
     ragged-last = ##t
     ragged-right = ##t
@@ -66,14 +66,18 @@
         \override Beam.breakable = ##t
         \override Beam.damping = 99
         \override Beam.concaveness = #10000
+        \override Beam.beam-thickness = #0.75
+        \override Beam.length-fraction = 1.5
 
+        \override Clef.layer = 2
         \override Clef.whiteout-style = #'outline
         \override Clef.whiteout = 1
 
         \override DynamicText.font-size = #-2
+        \override DynamicText.layer = 2
         \override DynamicLineSpanner.staff-padding = 4
 
-        \override Glissando.thickness = #2
+        \override Glissando.thickness = #3
         \override Glissando.breakable = ##t
 
         \override Hairpin.to-barline = ##f
@@ -85,11 +89,16 @@
         \override Staff.thickness = #0.5
 
         \override Stem.stemlet-length = 0.75
+        \override Stem.thickness = #0.5
+        \override Stem.details.beamed-lengths = #'(6)
+        \override Stem.details.lengths = #'(6)
 
         \override StemTremolo.beam-width = 1.5
         \override StemTremolo.beam-width = 1.5
         \override StemTremolo.flag-count = 4
         \override StemTremolo.slope = 0.5
+
+        \override TextScript.font-name = "Bodoni72 Book"
 
         \override Tie.stencil = #flare-tie
         \override Tie.height-limit = 6
@@ -114,7 +123,7 @@
 
     \context {
         \Staff
-        fontSize = #-1
+        fontSize = #-0.25
         \override TimeSignature.break-visibility = #end-of-line-invisible
         \override TimeSignature.font-size = 8
 		\override TimeSignature.font-name = "Bodoni72"

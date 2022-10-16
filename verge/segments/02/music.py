@@ -229,7 +229,7 @@ verge.pitch_arcana(
         6,
         7,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=5,
 )
 
@@ -301,7 +301,7 @@ verge.pitch_conjuring(
         9,
         10,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=4,
 )
 
@@ -312,7 +312,7 @@ verge.pitch_conjuring(
         9,
         10,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=4,
 )
 
@@ -364,8 +364,8 @@ for voice_name in ["violin 1 voice", "violin 2 voice", "violin 3 voice"]:
             sel.append(leaf)
     trinton.unbeam_quarters(sel)
 
-abjad.detach(abjad.StartBeam, abjad.select.leaf(score["violin 2 voice"], 3))
-abjad.attach(abjad.StartBeam(), abjad.select.leaf(score["violin 3 voice"], 0))
+abjad.attach(abjad.StartBeam(), abjad.select.leaf(score["violin 2 voice"], 0))
+abjad.attach(abjad.StartBeam(), abjad.select.leaf(score["violin 3 voice"], 1))
 
 
 for voice_name in ["violin 2 voice", "violin 3 voice"]:
@@ -455,6 +455,6 @@ trinton.render_file(
     segment_name="02",
     includes=[
         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+        "/Users/trintonprater/abjad/abjad/scm/abjad.ily",
     ],
 )

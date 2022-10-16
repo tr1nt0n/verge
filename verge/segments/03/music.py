@@ -322,7 +322,7 @@ verge.pitch_arcana(
     measures=[
         1,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=33,
 )
 
@@ -357,7 +357,7 @@ verge.pitch_stirring(
         5,
         6,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     string="I",
     index=0,
 )
@@ -370,7 +370,7 @@ verge.pitch_naiads(
     measures=[
         7,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     index=0,
 )
 
@@ -380,7 +380,7 @@ verge.pitch_earthen(
         8,
         9,
     ],
-    selector=baca.selectors.pleaves(),
+    selector=trinton.pleaves(),
     string="wrapping",
     seed=7,
     index=8,
@@ -393,7 +393,7 @@ for voice_name, string in zip(["violin 2 voice", "violin 3 voice"], ["II", "III"
             8,
             9,
         ],
-        selector=baca.selectors.pleaves(),
+        selector=trinton.pleaves(),
         string=string,
         seed=12,
         index=6,
@@ -416,7 +416,7 @@ for voice_name, index in zip(
             11,
             12,
         ],
-        selector=baca.selectors.pleaves(),
+        selector=trinton.pleaves(),
         index=index,
     )
 
@@ -481,7 +481,7 @@ trinton.attach(
     voice=score["violin 1 voice"],
     leaves=[
         41,
-        44,
+        43,
     ],
     attachment=abjad.LilyPondLiteral(r'\boxed-markup "DP, wrapping" 1', "after"),
 )
@@ -528,7 +528,7 @@ trinton.glissando(
 )
 
 violin_2_measures = abjad.select.group_by_measure(
-    abjad.select(score["violin 2 voice"]).leaves()
+    abjad.select.leaves(score["violin 2 voice"])
 )
 
 for leaf in abjad.select.exclude(abjad.select.leaves(violin_2_measures[6]), [-1]):
@@ -678,7 +678,7 @@ trinton.attach_multiple(
 trinton.attach(
     voice=score["violin 1 voice"],
     leaves=[
-        44,
+        43,
     ],
     attachment=abjad.Dynamic("fff"),
 )
@@ -692,6 +692,6 @@ trinton.render_file(
     segment_name="03",
     includes=[
         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+        "/Users/trintonprater/abjad/abjad/scm/abjad.ily",
     ],
 )

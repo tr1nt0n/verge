@@ -146,42 +146,28 @@ def arcana_rhythms(score, voice_name, durations, index, rest_selector=None):
     }
 
     if rest_selector is not None:
-        stack = rmakers.stack(
-            rmakers.tuplet(_voice_to_prolation[voice_name]),
-            rmakers.force_rest(rest_selector),
-            rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-            rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_dots(),
-            # rmakers.beam(lambda _: abjad.select.tuplets(_)),
-            rmakers.beam_groups(beam_rests=True),
-        )
 
         trinton.make_and_append_rhythm_selections(
             score=score,
             voice_name=voice_name,
-            stack=stack,
-            durations=durations,
+            rmaker=rmakers.tuplet(durations, _voice_to_prolation[voice_name]),
+            rmaker_commands=[
+                trinton.force_rest(rest_selector),
+                trinton.treat_tuplets(),
+                trinton.beam_groups(beam_rests=True),
+            ],
         )
 
     else:
-        stack = rmakers.stack(
-            rmakers.tuplet(_voice_to_prolation[voice_name]),
-            rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-            rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_dots(),
-            # rmakers.beam(lambda _: abjad.select.tuplets(_)),
-            rmakers.beam_groups(beam_rests=True),
-        )
 
         trinton.make_and_append_rhythm_selections(
             score=score,
             voice_name=voice_name,
-            stack=stack,
-            durations=durations,
+            rmaker=rmakers.tuplet(durations, _voice_to_prolation[voice_name]),
+            rmaker_commands=[
+                trinton.treat_tuplets(),
+                trinton.beam_groups(beam_rests=True),
+            ],
         )
 
 
@@ -189,63 +175,50 @@ def naiads_ii_rhythms(
     score, voice_names, durations, tuplets, division=16, extra_counts=[0]
 ):
 
-    stack1 = rmakers.stack(
-        rmakers.even_division([division], extra_counts=extra_counts),
-        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_dots(),
-        # rmakers.beam(lambda _: abjad.select.tuplets(_)),
-        rmakers.beam_groups(beam_rests=True),
-    )
+    rmaker_1 = rmakers.even_division(durations, [division], extra_counts=extra_counts)
 
-    stack2 = rmakers.stack(
-        rmakers.tuplet(tuplets),
-        rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-        rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-        rmakers.rewrite_dots(),
-        # rmakers.beam(lambda _: abjad.select.tuplets(_)),
-        rmakers.beam_groups(beam_rests=True),
-    )
+    rmaker_2 = rmakers.tuplet(durations, tuplets)
 
-    _voice_to_stack = {"violin 1 voice": stack1, "violin 2 voice": stack2}
+    _voice_to_rmaker = {"violin 1 voice": rmaker_1, "violin 2 voice": rmaker_2}
 
     for voice_name in voice_names:
         trinton.make_and_append_rhythm_selections(
             score=score,
             voice_name=voice_name,
-            stack=_voice_to_stack[voice_name],
-            durations=durations,
+            rmaker=_voice_to_rmaker[voice_name],
+            rmaker_commands=[
+                trinton.beam_groups(beam_rests=True),
+                trinton.treat_tuplets(),
+            ],
         )
+
+
+map = trinton.logistic_map(
+    x=4,
+    r=-1,
+    n=12,
+    seed=2,
+)
+
+map = [i for i in map if i != 0]
 
 
 def stirring_rhythms(score, voice_name, durations, divisions, index):
     for duration, division in zip(durations, divisions):
-        stack = rmakers.stack(
-            rmakers.talea(
+        trinton.make_and_append_rhythm_selections(
+            score=score,
+            voice_name=voice_name,
+            rmaker=rmakers.talea(
+                [duration],
                 trinton.rotated_sequence(
-                    trinton.logistic_map(
-                        x=4,
-                        r=-1,
-                        n=12,
-                        seed=2,
-                    ),
+                    map,
                     index,
                 ),
                 division,
             ),
-            rmakers.trivialize(lambda _: abjad.select.tuplets(_)),
-            rmakers.extract_trivial(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_rest_filled(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_sustained(lambda _: abjad.select.tuplets(_)),
-            rmakers.rewrite_dots(),
-        )
-
-        trinton.make_and_append_rhythm_selections(
-            score=score, voice_name=voice_name, stack=stack, durations=[duration]
+            rmaker_commands=[
+                trinton.treat_tuplets(),
+            ],
         )
 
 
@@ -540,7 +513,7 @@ def pitch_earthen(voice, measures, selector, string, seed, index):
             selections = selector(current_measure)
 
             for leaf in selections:
-                abjad.tweak(leaf.note_head).style = r"#'triangle"
+                abjad.tweak(leaf.note_head, r"\tweak style #'triangle")
             for tie in abjad.select.logical_ties(selections):
                 abjad.attach(abjad.Articulation("tenuto"), tie[0])
 
@@ -553,7 +526,7 @@ def pitch_earthen(voice, measures, selector, string, seed, index):
             selections = selector(current_measure)
 
             for leaf in selections:
-                abjad.tweak(leaf.note_head).Accidental.transparent = True
+                abjad.tweak(leaf.note_head, r"\tweak Accidental.transparent ##t")
             for tie in abjad.select.logical_ties(selections):
                 abjad.attach(abjad.Articulation("marcato"), tie[0])
 
@@ -702,7 +675,7 @@ def pitch_naiads(voices, measures, selector, index):
                 selection = selector(current_measure)
 
                 for leaf in selection:
-                    abjad.tweak(leaf.note_head).Accidental.transparent = True
+                    abjad.tweak(leaf.note_head, r"\tweak Accidental.transparent ##t")
 
                 for leaf in current_measure:
                     abjad.label.color_leaves(leaf, "#DarkRed")
@@ -719,7 +692,7 @@ def pitch_naiads(voices, measures, selector, index):
 
                 for chord in selections:
                     for head in chord.note_heads:
-                        abjad.tweak(head).style = r"#'harmonic-mixed"
+                        abjad.tweak(head, r"\tweak style #'harmonic-mixed")
 
 
 _string_to_pitches = {
@@ -822,24 +795,30 @@ def pitch_stirring(voice, measures, selector, string, index):
         selections = selector(current_measure)
 
         for leaf in selections:
-            if leaf.written_duration == abjad.Duration(1, 8):
-                abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
+            if (
+                leaf.written_pitch == abjad.NamedPitch("g")
+                or leaf.written_pitch == abjad.NamedPitch("d'")
+                or leaf.written_pitch == abjad.NamedPitch("a'")
+                or leaf.written_pitch == abjad.NamedPitch("e''")
+            ):
+                pass
+            elif leaf.written_duration == abjad.Duration(1, 8):
+                abjad.tweak(leaf.note_head, r"\tweak style #'harmonic-mixed")
             elif leaf.written_duration == abjad.Duration(1, 16):
-                abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
+                abjad.tweak(leaf.note_head, r"\tweak style #'harmonic-mixed")
             elif leaf.written_duration == abjad.Duration(1, 32):
-                abjad.tweak(leaf.note_head).style = r"#'harmonic-mixed"
+                abjad.tweak(leaf.note_head, r"\tweak style #'harmonic-mixed")
             else:
-                abjad.tweak(leaf.note_head).style = r"#'cross"
+                abjad.tweak(leaf.note_head, r"\tweak style #'cross")
 
         for leaf in selections:
-            if leaf.written_pitch == abjad.NamedPitch("g"):
-                abjad.tweak(leaf.note_head).style = r"#'cross"
-            elif leaf.written_pitch == abjad.NamedPitch("d'"):
-                abjad.tweak(leaf.note_head).style = r"#'cross"
-            elif leaf.written_pitch == abjad.NamedPitch("a'"):
-                abjad.tweak(leaf.note_head).style = r"#'cross"
-            elif leaf.written_pitch == abjad.NamedPitch("e''"):
-                abjad.tweak(leaf.note_head).style = r"#'cross"
+            if (
+                leaf.written_pitch == abjad.NamedPitch("g")
+                or leaf.written_pitch == abjad.NamedPitch("d'")
+                or leaf.written_pitch == abjad.NamedPitch("a'")
+                or leaf.written_pitch == abjad.NamedPitch("e''")
+            ):
+                abjad.tweak(leaf.note_head, r"\tweak style #'cross")
 
         for tie in abjad.select.logical_ties(selections):
             abjad.attach(

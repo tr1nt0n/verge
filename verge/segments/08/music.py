@@ -116,7 +116,7 @@ for measures, string, index in zip(
     verge.pitch_stirring(
         voice=score["violin 2 voice"],
         measures=measures,
-        selector=baca.selectors.pleaves(),
+        selector=trinton.pleaves(),
         string=string,
         index=index,
     )
@@ -203,6 +203,6 @@ trinton.render_file(
     segment_name="08",
     includes=[
         "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily",
-        "/Users/trintonprater/abjad/abjad/_stylesheets/abjad.ily",
+        "/Users/trintonprater/abjad/abjad/scm/abjad.ily",
     ],
 )
