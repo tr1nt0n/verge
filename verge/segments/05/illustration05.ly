@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.23.14"
 \language "english"
 \include "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily"
 \include "/Users/trintonprater/abjad/abjad/scm/abjad.ily"
@@ -80,7 +80,7 @@
             \context Staff = "violin 1 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 1 voice"
+                \context Staff = "violin 1 voice"
                 {
                     s1 * 1/9
                     s1 * 5/8
@@ -89,12 +89,14 @@
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }
@@ -104,7 +106,7 @@
             \context Staff = "violin 2 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 2 voice"
+                \context Staff = "violin 2 voice"
                 {
                     % OPEN_BRACKETS:
                     \tweak edge-height #'(0.7 . 0)
@@ -179,12 +181,14 @@
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }
@@ -194,7 +198,7 @@
             \context Staff = "violin 3 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 3 voice"
+                \context Staff = "violin 3 voice"
                 {
                     s1 * 1/9
                     s1 * 5/8
@@ -203,12 +207,14 @@
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }

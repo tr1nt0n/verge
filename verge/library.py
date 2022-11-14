@@ -380,6 +380,15 @@ def pitch_conjuring(voice, measures, selector, index):
 
         ratio_handler(selections)
 
+    for measure in measures:
+
+        grouped_measures = abjad.select.group_by_measure(abjad.select.leaves(voice))
+
+        current_measure = grouped_measures[measure - 1]
+
+        for leaf in abjad.select.leaves(current_measure, pitched=True):
+            leaf.note_head.is_forced = True
+
 
 def pitch_arcana(voices, measures, selector, index):
     map = trinton.rotated_sequence(

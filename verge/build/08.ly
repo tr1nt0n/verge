@@ -42,7 +42,7 @@
             \context Staff = "violin 1 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 1 voice"
+                \context Staff = "violin 1 voice"
                 {
                     s1 * 3/4
                     s1 * 3/4
@@ -59,7 +59,7 @@
             \context Staff = "violin 2 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 2 voice"
+                \context Staff = "violin 2 voice"
                 {
                     \tweak style #'cross
                     d'4
@@ -414,7 +414,7 @@
             \context Staff = "violin 3 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 3 voice"
+                \context Staff = "violin 3 voice"
                 {
                     s1 * 3/4
                     s1 * 3/4

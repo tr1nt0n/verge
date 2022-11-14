@@ -44,7 +44,8 @@
         \numericTimeSignature
         \accepts TimeSignatureContext
         proportionalNotationDuration = #(ly:make-moment 1 20)
-        \override StaffGrouper.staff-staff-spacing = #'((basic-distance . 11) (minimum distance . 11) (padding . 2))
+        \override StaffGrouper.staff-staff-spacing = #'((basic-distance . 0) (minimum distance . 4) (padding . 4))
+        \override StaffGrouper.staffgroup-staff-spacing = #'((basic-distance . 0) (minimum distance . 4) (padding . 4))
 
         \override AccidentalSuggestion.avoid-slur = #'ignore
 
@@ -57,7 +58,7 @@
         \override BarNumber.stencil = #(make-stencil-circler 0.1 0.75 ly:text-interface::print)
         \override BarNumber.Y-extent = ##f
 		\override BarNumber.Y-offset = 0
-		\override BarNumber.extra-offset = #'(-4 . -4)
+		\override BarNumber.extra-offset = #'(-2 . 4)
         \override BarNumber.font-size = 2
         \override BarNumber.font-name = "Bodoni72"
 		\override BarNumber.padding = 1
@@ -109,6 +110,9 @@
         \override TupletBracket.padding = 2
         \override TupletNumber.font-size = 1.5
         \override TupletBracket.bracket-visibility = ##t
+        \override TupletBracket.whiteout-style = #'outline
+        \override TupletBracket.whiteout = 1
+        \override TupletBracket.layer = 3
         \override TupletNumber.text = #tuplet-number::calc-fraction-text
         \override TupletBracket #'stencil =
             #(lambda (grob)
@@ -119,6 +123,9 @@
                                    (min (car pos)(cdr pos)))))
                  (ly:grob-set-property! grob 'positions (cons new-pos new-pos))
                  (ly:tuplet-bracket::print grob)))
+         \override TupletNumber.whiteout-style = #'outline
+         \override TupletNumber.whiteout = 1
+         \override TupletNumber.layer = 3
     }
 
     \context {
@@ -129,6 +136,7 @@
 		\override TimeSignature.font-name = "Bodoni72"
         \override TimeSignature.whiteout-style = #'outline
         \override TimeSignature.whiteout = 1
+        \override TimeSignature.layer = 4
         \RemoveAllEmptyStaves
     }
 

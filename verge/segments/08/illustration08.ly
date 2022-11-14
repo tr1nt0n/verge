@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.23.14"
 \language "english"
 \include "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily"
 \include "/Users/trintonprater/abjad/abjad/scm/abjad.ily"
@@ -48,7 +48,7 @@
             \context Staff = "violin 1 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 1 voice"
+                \context Staff = "violin 1 voice"
                 {
                     s1 * 3/4
                     s1 * 3/4
@@ -65,7 +65,7 @@
             \context Staff = "violin 2 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 2 voice"
+                \context Staff = "violin 2 voice"
                 {
                     \tweak style #'cross
                     d'4
@@ -420,7 +420,7 @@
             \context Staff = "violin 3 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 3 voice"
+                \context Staff = "violin 3 voice"
                 {
                     s1 * 3/4
                     s1 * 3/4

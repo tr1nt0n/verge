@@ -163,7 +163,7 @@
             \context Staff = "violin 1 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 1 voice"
+                \context Staff = "violin 1 voice"
                 {
                     s1 * 7/4
                     s1 * 3/2
@@ -2384,12 +2384,14 @@
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }
@@ -2399,7 +2401,7 @@
             \context Staff = "violin 2 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 2 voice"
+                \context Staff = "violin 2 voice"
                 {
                     % ABSOLUTE_BEFORE:
                     % COMMANDS:
@@ -2588,7 +2590,7 @@
                     \tweak edge-height #'(0.7 . 0)
                     \times 4/7
                     {
-                        g'1
+                        g'!1
                         % AFTER:
                         % ARTICULATIONS:
                         \mp
@@ -2596,15 +2598,15 @@
                         ^ \markup \center-align +37
                         % SPANNER_STARTS:
                         ~
-                        g'4
+                        g'!4
                     % CLOSE_BRACKETS:
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup { \natural-one-syntonic-comma-down  }
-                    b'2
+                    b'!2
                     % AFTER:
                     % MARKUP:
-                    ^ \markup \center-align { -14 }
+                    ^ \markup \center-align { \concat { -14 } }
                     % SPANNER_STARTS:
                     \(
                     % OPEN_BRACKETS:
@@ -2613,10 +2615,10 @@
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup \concat { \one-septimal-comma-down \hspace #0.125 \abjad-flat  }
-                        af'2
+                        af'!2
                         % AFTER:
                         % MARKUP:
-                        ^ \markup \center-align { -41 }
+                        ^ \markup \center-align { \concat { -41 } }
                         % SPANNER_STOPS:
                         \)
                     % CLOSE_BRACKETS:
@@ -3956,12 +3958,14 @@
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }
@@ -3971,7 +3975,7 @@
             \context Staff = "violin 3 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 3 voice"
+                \context Staff = "violin 3 voice"
                 {
                     s1 * 7/4
                     s1 * 3/2
@@ -3983,20 +3987,20 @@
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \abjad-natural  }
-                        b2
+                        b!2
                         % AFTER:
                         % MARKUP:
-                        ^ \markup \center-align { +4 }
+                        ^ \markup \center-align { \concat { +4 } }
                         % SPANNER_STARTS:
                         \(
                     % CLOSE_BRACKETS:
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup { \abjad-natural  }
-                    d'2
+                    d'!2
                     % AFTER:
                     % MARKUP:
-                    ^ \markup \center-align { +2 }
+                    ^ \markup \center-align { \concat { +2 } }
                     % SPANNER_STOPS:
                     \)
                     % OPEN_BRACKETS:
@@ -4005,15 +4009,15 @@
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \abjad-flat  }
-                        bf1
+                        bf!1
                         % AFTER:
                         % MARKUP:
-                        ^ \markup \center-align { -10 }
+                        ^ \markup \center-align { \concat { -10 } }
                         % SPANNER_STARTS:
                         ~
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \abjad-flat  }
-                        bf4
+                        bf!4
                     % CLOSE_BRACKETS:
                     }
                     s1 * 1/4
@@ -4034,12 +4038,14 @@
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }

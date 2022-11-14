@@ -1,4 +1,4 @@
-\version "2.20.0"
+\version "2.23.14"
 \language "english"
 \include "/Users/trintonprater/scores/verge/verge/build/verge_stylesheet.ily"
 \include "/Users/trintonprater/abjad/abjad/scm/abjad.ily"
@@ -93,7 +93,7 @@
             \context Staff = "violin 1 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 1 voice"
+                \context Staff = "violin 1 voice"
                 {
                     % OPEN_BRACKETS:
                     \tweak text #tuplet-number::calc-fraction-text
@@ -268,12 +268,14 @@
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }
@@ -283,7 +285,7 @@
             \context Staff = "violin 2 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 2 voice"
+                \context Staff = "violin 2 voice"
                 {
                     % ABSOLUTE_BEFORE:
                     % COMMANDS:
@@ -423,12 +425,12 @@
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \flat-one-syntonic-comma-up  }
-                        af'2..
+                        af'!2..
                         % AFTER:
                         % ARTICULATIONS:
                         \mp
                         % MARKUP:
-                        ^ \markup \center-align { +8 }
+                        ^ \markup \center-align { \concat { +8 } }
                         % SPANNER_STARTS:
                         \(
                         \<
@@ -436,12 +438,12 @@
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup \concat { \one-seventeen-limit-schisma-down \hspace #0.125 \one-septimal-comma-up \hspace #0.125 \double-sharp-one-syntonic-comma-down  }
-                    css''2
+                    css''!2
                     % AFTER:
                     % ARTICULATIONS:
                     \mf
                     % MARKUP:
-                    ^ \markup \center-align { +22 }
+                    ^ \markup \center-align { \concat { +22 } }
                     % SPANNER_STOPS:
                     \)
                     % SPANNER_STARTS:
@@ -452,23 +454,25 @@
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \flat-two-syntonic-comma-up  }
-                        af'2
+                        af'!2
                         % AFTER:
                         % ARTICULATIONS:
                         \mp
                         % MARKUP:
-                        ^ \markup \center-align { +29 }
+                        ^ \markup \center-align { \concat { +29 } }
                     % CLOSE_BRACKETS:
                     }
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }
@@ -478,7 +482,7 @@
             \context Staff = "violin 3 staff"
             {
                 % OPEN_BRACKETS:
-                \context Voice = "violin 3 voice"
+                \context Staff = "violin 3 voice"
                 {
                     % OPEN_BRACKETS:
                     \tweak text #tuplet-number::calc-fraction-text
@@ -617,20 +621,20 @@
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \abjad-natural  }
-                        c'2
+                        c'!2
                         % AFTER:
                         % MARKUP:
-                        ^ \markup \center-align { -6 }
+                        ^ \markup \center-align { \concat { -6 } }
                         % SPANNER_STARTS:
                         \(
                     % CLOSE_BRACKETS:
                     }
                     \tweak Accidental.stencil #ly:text-interface::print
                     \tweak Accidental.text \markup { \sharp-one-syntonic-comma-down  }
-                    fs'2
+                    fs'!2
                     % AFTER:
                     % MARKUP:
-                    ^ \markup \center-align { -12 }
+                    ^ \markup \center-align { \concat { -12 } }
                     % SPANNER_STOPS:
                     \)
                     % OPEN_BRACKETS:
@@ -639,21 +643,23 @@
                     {
                         \tweak Accidental.stencil #ly:text-interface::print
                         \tweak Accidental.text \markup { \natural-one-syntonic-comma-up  }
-                        c'2..
+                        c'!2..
                         % AFTER:
                         % MARKUP:
-                        ^ \markup \center-align { +16 }
+                        ^ \markup \center-align { \concat { +16 } }
                     % CLOSE_BRACKETS:
                     }
                     % BEFORE:
                     % COMMANDS:
                     \once \override MultiMeasureRest.transparent = ##t
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \once \override Staff.StaffSymbol.line-count = #0 \startStaff
                     R1 * 1/4
                     % AFTER:
                     % MARKUP:
                     - \markup \huge { \musicglyph "scripts.ufermata" }
                     % COMMANDS:
+                    \once \override Score.BarLine.transparent = ##f
                     \stopStaff \startStaff
                 % CLOSE_BRACKETS:
                 }
